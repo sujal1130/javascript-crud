@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Studant Form</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+   <body>
+
+   <header>
+      <nav class="search">
+         <!-- <input type="text" placeholder="Search...!"> -->
+         <!-- <button>Search</button> -->
+      </nav>
+   </header>
+
+   <h1>Data Table</h1>
+
+   <!--Add button-->
+         <button class="add" id="addbutton"> Add </button>
+
+      <!-- Table -->
+      <table id="dataTable">
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Date of birth</th>
+               <th>mobile number</th>
+               <th>City</th>
+               <th>Actions</th> <!-- Additional column for buttons -->
+            </tr>
+         </thead>
+         <tbody>
+            <!-- Example of a dynamically added row -->
+      <tr>
+         <td>John Doe</td>
+         <td>1990-05-15</td>
+         <td>123-456-7890</td>
+         <td>New York</td>
+         <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+         </td>
+      </tr>
+         <tr>
+         <td>John Doe</td>
+         <td>1990-05-15</td>
+         <td>123-456-7890</td>
+         <td>New York</td>
+         <td>
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+         </td>
+      </tr>
+      <!-- Other rows will be added dynamically -->
+         </tbody>
+      </table>
+      
+   
+      <!-- Link to JavaScript -->
+      <script src="script.js"></script>
+   </body>
+</html>

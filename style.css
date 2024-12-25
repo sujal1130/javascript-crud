@@ -1,0 +1,91 @@
+/* * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+} */
+
+h1 {
+   text-align: center;
+   color: #2E2E2E;
+   
+}
+
+/* Style the button */
+button.add {
+ padding: 10px 20px;
+ font-size: 16px;
+ color: white;
+ background-color: #007BFF;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+ transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for button */
+button.add:hover {
+ background-color: #0056b3;
+ transform: translateY(-2px);
+}
+
+/* Active effect for button */
+button.add:active {
+ background-color: #003d80;
+ transform: translateY(0px);
+}
+
+
+/* Basic table styling */
+#dataTable {
+ width: 100%;
+ border-collapse: collapse; /* Collapse borders between table cells */
+ margin: 20px 0; 
+ font-family: Arial, sans-serif; 
+}
+
+/* Table header styling */
+#dataTable th {
+ background-color: #ccc; 
+ color: rgb(64, 61, 61); 
+ padding: 12px 15px; 
+ text-align: left; 
+ font-size: 16px; 
+}
+
+/* Table data cell styling */
+#dataTable td {
+ padding: 12px 15px; 
+ text-align: left; 
+ border-bottom: 1px solid #cdcdcd; 
+}
+
+/* Table row hover effect */
+#dataTable tr:hover {
+ background-color: #f2f2f2; 
+}
+
+/* Styling for buttons in each row (Edit/Delete) */
+/* Edit button style */
+button.edit {
+ padding: 5px 10px;
+ margin: 0 5px;
+ background-color: #ffa500; /* Orange color for edit */
+ color: white; /* White text */
+}
+
+button.edit:hover {
+ background-color: #ff8c00; /* Darker orange on hover */
+}
+
+/* Delete button style */
+button.delete {
+ padding: 5px 10px;
+ margin: 0 5px;
+ background-color: #f44336; /* Red color for delete */
+ color: white; /* White text */
+}
+
+button.delete:hover {
+ background-color: #d32f2f; /* Darker red on hover */
+}
