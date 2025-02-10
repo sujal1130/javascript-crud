@@ -4,30 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Page</title>
+  <link rel="stylesheet" href="styleForm.css" />
 </head>
 <body>
   <h2>Registration Form</h2>
 
   <form id="dataForm">
-    <label for="FastName">FastName</label><be>
-    <input type="text" placeholder="Enter Your FastName..." required><br><br>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" placeholder="Enter Your First Name..." required><br><br>
 
-    <label for="FastName">LastName</label><be>
-    <input type="text" placeholder="Enter Your LastName..." required><br><br>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" placeholder="Enter Your Last Name..." required><br><br>
 
-      <label for="FastName">Date of birth</label><be>
-      <input type="text" placeholder="Enter Your Date of birth..." required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter Your Email..." required><br><br>
 
-      <label for="FastName">mobile number</label><be>
-      <input type="text" placeholder="Enter Your mobile number..." required><br><br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required><br><br>
 
-        <label for="FastName">City</label><be>
-        <input type="text" placeholder="Enter Your City..." required><br><br>
+    <label for="mobile">Mobile Number:</label>
+    <input type="tel" id="mobile" placeholder="Enter Your Mobile Number..." required><br><br>
 
-        <button type="button" id="cancelButton">Cansel</button>
-        <button type="submit" id="submitButton">Submit</button>
+    <label for="address">Address:</label>
+    <input type="text" id="address" placeholder="Enter Your Address..." required><br><br>
 
-        <script src="script.js"></script>
+    <label for="city">City:</label>
+    <input type="text" id="city" placeholder="Enter Your City..." required><br><br>
+
+    <button type="button" id="cancelButton">Cancel</button>
+    <button type="submit" id="submitButton">Submit</button>
   </form>
+
+  <script src="forms.js"></script>
 </body>
 </html>
