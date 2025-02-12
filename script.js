@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     userTable.innerHTML = "";
 
     if (users.length === 0) {
-      userTable.innerHTML = `<tr><td colspan="10">No data available</td></tr>`;
+      userTable.innerHTML = `<tr><td colspan="11">No data available</td></tr>`;
       return;
     }
 
@@ -24,7 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>${user.address}</td>
             <td>${user.country}</td>
             <td>${user.city}</td>
-            <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+            <td class="button-container">
+            <button class="delete-btn" data-index="${index}">Delete</button>
+            <button class="edit-btn" data-index="${index}">Edit</button>
+            </td>
         `;
       userTable.appendChild(row);
     });
@@ -36,6 +39,15 @@ document.addEventListener("DOMContentLoaded", function () {
         users.splice(index, 1); // Remove user from array
         localStorage.setItem("users", JSON.stringify(users)); // Update localStorage
         renderTable(); // Re-render table
+      });
+    });
+
+    // Attach event listeners to edit buttons
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", function () {
+        let index = this.getAttribute("data-index");
+        localStorage.setItem("editIndex", index); // Store index for editing
+        window.location.href = "form.html"; // Redirect to form
       });
     });
   }
