@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Form Page</title>
-  <link rel="stylesheet" href="styleForm.css" />
-
-</head>
-    <body>
-      <section class="container">
-        <header>Registration Form</header>
-        <form class="form">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styleForm.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>Registration Form</header>
+      <form class="form">
+        <div class="input-box">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Enter full name" />
+        </div>
+        <div class="input-box">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter last name" />
+        </div>
+        <div class="input-box">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="Enter email address" />
+        </div>
+        <div class="column">
           <div class="input-box">
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter full name" required />
+            <label for="phone">Phone Number</label>
+            <input type="number" id="phone" placeholder="Enter phone number" />
           </div>
           <div class="input-box">
-            <label>Last Name</label>
-            <input type="text" placeholder="Enter full name" required />
+            <label for="birthDate">Birth Date</label>
+            <input type="date" id="birthDate" />
           </div>
-          <div class="input-box">
-            <label>Email Address</label>
-            <input type="text" placeholder="Enter email address" required />
+        </div>
+        <div class="gender-box">
+          <h3>Select Gender</h3>
+          <div class="gender-option">
+            <div class="gender">
+              <input type="radio" id="male" name="gender" value="Male" />
+              <label for="male">Male</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="female" name="gender" value="Female" />
+              <label for="female">Female</label>
+            </div>
+            <div class="gender">
+              <input type="radio" id="other" name="gender" value="Other" />
+              <label for="other">Other</label>
+            </div>
           </div>
+        </div>
+        <div class="input-box address">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="Enter street address" />
           <div class="column">
-            <div class="input-box">
-              <label>Phone Number</label>
-              <input type="number" placeholder="Enter phone number" required />
+            <div class="select-box">
+              <label for="country">Country</label>
+              <select id="country">
+                <option hidden>Select Country</option>
+                <option value="America">America</option>
+                <option value="Japan">Japan</option>
+                <option value="India">India</option>
+                <option value="Nepal">Nepal</option>
+              </select>
             </div>
-            <div class="input-box">
-              <label>Birth Date</label>
-              <input type="date" placeholder="Enter birth date" required />
-            </div>
-          </div>
-          <div class="gender-box">
-            <h3>Select Gender</h3>
-            <div class="gender-option">
-              <div class="gender">
-                <input type="radio" id="male" name="gender" value="Male">
-                <label for="male">Male</label>
-              </div>
-              <div class="gender">
-                <input type="radio" id="female" name="gender" value="Female">
-                <label for="female">Female</label>
-              </div>
-              <div class="gender">
-                <input type="radio" id="other" name="gender" value="Other">
-                <label for="other">Other</label>
-              </div>
+            <div>
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="Enter your city" />
             </div>
           </div>
-          <div class="input-box address">
-            <label>Address</label>
-            <input type="text" placeholder="Enter street address" required />
-            <div class="column">
-              <div class="select-box">
-                <label>Country</label>
-                <select>
-                  <option hidden>Country</option>
-                  <option>America</option>
-                  <option>Japan</option>
-                  <option>India</option>
-                  <option>Nepal</option>
-                </select>
-              </div>
-              <div>
-              <label>city</label>
-              <input type="text" placeholder="Enter your city" required />
-              </div>
-            </div>
-          </div>
-          <button id="cancelButton">Cancel</button>
+        </div>
+        <div class="button-group">
+          <button type="button" id="cancelButton">Cancel</button>
           <button type="submit" id="submitButton">Submit</button>
-        </form>
-      </section>
-  <script src="forms.js"></script>
-</body>
+        </div>
+      </form>
+    </section>
+    <script src="forms.js"></script>
+  </body>
 </html>
