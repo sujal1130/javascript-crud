@@ -2,34 +2,62 @@ document.addEventListener("DOMContentLoaded", function () {
   const cancelButton = document.getElementById("cancelButton");
   const form = document.querySelector(".form");
   const phoneInput = document.querySelector('input[type="number"]');
+  const submitButton = document.querySelector('button[type="submit"]');
+
+  if (!form || !submitButton) return; // Ensure form and button exist
+
+  // Function to display error message
+  function showError(input, message) {
+    let errorElement = input.nextElementSibling;
+    if (!errorElement || !errorElement.classList.contains("error-message")) {
+      errorElement = document.createElement("span");
+      errorElement.classList.add("error-message");
+      input.parentNode.appendChild(errorElement);
+    }
+    errorElement.textContent = message;
+  }
+
+  // Function to clear error message
+  function clearError(input) {
+    let errorElement = input.nextElementSibling;
+    if (errorElement && errorElement.classList.contains("error-message")) {
+      errorElement.textContent = "";
+    }
+  }
+
+  // Function to validate phone number
+  function validatePhoneNumber() {
+    let value = phoneInput.value.replace(/\D/g, ""); // Remove non-numeric characters
+    if (value.length > 10) {
+      value = value.slice(0, 10);
+    }
+    phoneInput.value = value;
+  }
 
   // Cancel button functionality
   if (cancelButton) {
     cancelButton.addEventListener("click", function (event) {
       event.preventDefault();
       form.reset();
+      document
+        .querySelectorAll(".error-message")
+        .forEach((el) => (el.textContent = ""));
     });
   }
 
-  // Phone number validation
+  // Attach event listener to phone input
   if (phoneInput) {
-    phoneInput.addEventListener("input", function () {
-      let value = phoneInput.value.replace(/\D/g, "");
-      if (value.length > 10) {
-        value = value.slice(0, 10);
-      }
-      phoneInput.value = value;
-    });
+    phoneInput.addEventListener("input", validatePhoneNumber);
   }
 
-  // Fetch stored users
+  // Fetch stored users from local storage
   let users = JSON.parse(localStorage.getItem("users")) || [];
   let editIndex = localStorage.getItem("editIndex");
 
+  // If editing an existing user, prefill the form
   if (editIndex !== null) {
     editIndex = parseInt(editIndex);
     const user = users[editIndex];
-
     if (user) {
       document.querySelector('input[placeholder="Enter full name"]').value =
         user.fullName;
@@ -52,48 +80,88 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Form submit event
+  // Form submission validation and processing
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    if (phoneInput.value.length !== 10) {
-      alert("Phone number must be 10 digits");
-      return;
-    }
+    let isValid = true;
+    const requiredFields = [
+      {
+        input: document.querySelector('input[placeholder="Enter full name"]'),
+        message: "Full name is required",
+      },
+      {
+        input: document.querySelectorAll(
+          'input[placeholder="Enter full name"]'
+        )[1],
+        message: "Last name is required",
+      },
+      {
+        input: document.querySelector(
+          'input[placeholder="Enter email address"]'
+        ),
+        message: "Enter a valid email address",
+        validate: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value),
+      },
+      {
+        input: phoneInput,
+        message: "Phone number must be 10 digits",
+        validate: (value) => value.length === 10,
+      },
+      {
+        input: document.querySelector('input[type="date"]'),
+        message: "Birth date is required",
+      },
+      {
+        input: document.querySelector('input[name="gender"]:checked'),
+        message: "Please select a gender",
+        isOptional: true,
+      },
+      {
+        input: document.querySelector(
+          'input[placeholder="Enter street address"]'
+        ),
+        message: "Street address is required",
+      },
+      {
+        input: document.querySelector(".select-box select"),
+        message: "Please select a country",
+      },
+      {
+        input: document.querySelector('input[placeholder="Enter your city"]'),
+        message: "City is required",
+      },
+    ];
 
-    const formData = {
-      fullName: document
-        .querySelector('input[placeholder="Enter full name"]')
-        .value.trim(),
-      lastName: document
-        .querySelectorAll('input[placeholder="Enter full name"]')[1]
-        .value.trim(),
-      email: document
-        .querySelector('input[placeholder="Enter email address"]')
-        .value.trim(),
-      phone: phoneInput.value.trim(),
-      birthDate: document.querySelector('input[type="date"]').value.trim(),
-      gender:
-        form.querySelector('input[name="gender"]:checked')?.value ||
-        "Not specified",
-      address: document
-        .querySelector('input[placeholder="Enter street address"]')
-        .value.trim(),
-      country: document.querySelector(".select-box select").value.trim(),
-      city: document
-        .querySelector('input[placeholder="Enter your city"]')
-        .value.trim(),
-    };
+    // Validate required fields
+    requiredFields.forEach(({ input, message, validate, isOptional }) => {
+      if (!input || !input.value.trim()) {
+        if (!isOptional) {
+          showError(input, message);
+          isValid = false;
+        }
+      } else if (validate && !validate(input.value.trim())) {
+        showError(input, message);
+        isValid = false;
+      } else {
+        clearError(input);
+      }
+    });
 
+    if (!isValid) return;
+
+    // Collect form data
+    const formData = Object.fromEntries(new FormData(form).entries());
+
+    // Update or save user data
     if (editIndex !== null) {
-      users[editIndex] = formData; // Update existing user
+      users[editIndex] = formData;
       localStorage.removeItem("editIndex");
     } else {
-      users.push(formData); // Add new user
+      users.push(formData);
     }
 
     localStorage.setItem("users", JSON.stringify(users));
-    // Redirect to index.html
-    window.location.href = "index.html";
+    window.location.href = "index.html"; // Redirect after submission
   });
 });
