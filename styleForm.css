@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
@@ -32,8 +32,8 @@ body {
 /* Header Styling */
 header {
   text-align: center;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: 24px;
+  font-weight: bold;
   color: #000000;
   margin-bottom: 20px;
 }
@@ -42,13 +42,14 @@ header {
 .form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
 }
 
 /* Input Box */
 .input-box {
   display: flex;
   flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
 
 .input-box label {
@@ -60,7 +61,6 @@ header {
 .input-box input,
 .select-box select {
   width: 100%;
-  padding: 12px;
   border: 1px solid rgba(2, 2, 2, 0.3);
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.1);
@@ -68,6 +68,9 @@ header {
   outline: none;
   font-size: 16px;
   transition: 0.3s ease;
+  display: block;
+  margin-bottom: 10px;
+  padding: 8px;
 }
 
 .input-box input::placeholder {
@@ -91,6 +94,7 @@ header {
 
 /* Gender Selection */
 .gender-box {
+<<<<<<< Updated upstream
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
@@ -158,35 +162,100 @@ header {
     background: #000;
     color: #fff;
   }
+=======
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
 
-/* Buttons */
-button {
+.gender-box h3 {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.gender-option {
+  display: flex;
+  gap: 15px;
+}
+
+.gender {
+  position: relative;
+}
+
+.gender input {
+  display: none;
+}
+
+.gender label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.gender input:checked + label {
+  background: #b71c1c;
+  color: #fff;
+}
+
+/* Select Box */
+.select-box {
+  position: relative;
+  width: 100%;
+}
+
+.select-box select {
   width: 100%;
   padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #000000;
+  font-size: 16px;
+  outline: none;
   cursor: pointer;
   transition: 0.3s ease;
 }
 
-#cancelButton {
-  background: rgba(255, 255, 255, 0.3);
+.select-box select option {
+  background: #000;
   color: #fff;
 }
+>>>>>>> Stashed changes
 
-#cancelButton:hover {
-  background: rgba(255, 255, 255, 0.5);
+/* Buttons */
+button {
+  padding: 10px 15px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#cancelButton {
+  background-color: #757575;
+  color: white;
 }
 
 #submitButton {
-  background: #ff4757;
-  color: #fff;
+  background-color: #d32f2f;
+  color: white;
+}
+
+#cancelButton:hover {
+  background-color: #616161;
 }
 
 #submitButton:hover {
-  background: #e84118;
+  background-color: #b71c1c;
 }
 
 /* Responsive Design */
