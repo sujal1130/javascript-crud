@@ -3,44 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Studant Form</title>
+    <title>Student Form</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header>
-      <nav class="search">
-        <!-- <input type="text" placeholder="Search...!"> -->
-        <!-- <button>Search</button> -->
-      </nav>
-    </header>
+    <header></header>
 
-    <h1>Data Table</h1>
+    <main>
+      <h1>Data Table</h1>
 
-    <!--Add button-->
-    <button class="add" id="addbutton">Add</button>
+      <!-- Add Button -->
+      <div class="ADD">
+        <button class="add" id="addButton">Add</button>
+      </div>
+      <section class="container">
+        <header>Users List</header>
+        <table border="1">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Birth Date</th>
+              <th>Gender</th>
+              <th>Address</th>
+              <th>Country</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="userTable"></tbody>
+        </table>
+      </section>
+    </main>
 
-    <section class="container">
-      <header>Users List</header>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Full Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Birth Date</th>
-            <th>Gender</th>
-            <th>Address</th>
-            <th>Country</th>
-            <th>City</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="userTable"></tbody>
-      </table>
-    </section>
-
-    <!-- Link to JavaScript -->
     <script src="script.js"></script>
   </body>
 </html>
