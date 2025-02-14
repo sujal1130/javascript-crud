@@ -1,10 +1,12 @@
+/* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 
+/* Global Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 body {
@@ -15,26 +17,28 @@ body {
   width: 100%;
   background: #000 url("japan.jpg") no-repeat center center fixed;
   background-size: cover;
+  padding: 20px;
 }
 
 /* Glassmorphism Container */
 .container {
-  width: 420px;
+  width: 100%;
+  max-width: 450px;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 25px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Header Styling */
 header {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #000000;
+  font-size: 22px;
+  font-weight: 600;
+  color: #fff;
   margin-bottom: 20px;
 }
 
@@ -44,11 +48,9 @@ header {
   flex-direction: column;
 }
 
-/* Input Box */
 .input-box {
   display: flex;
   flex-direction: column;
-  font-weight: bold;
   margin-bottom: 15px;
 }
 
@@ -61,28 +63,26 @@ header {
 .input-box input,
 .select-box select {
   width: 100%;
-  border: 1px solid rgba(2, 2, 2, 0.3);
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
   color: #000000;
-  outline: none;
   font-size: 16px;
-  transition: 0.3s ease;
-  display: block;
-  margin-bottom: 10px;
-  padding: 8px;
+  padding: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
 }
 
 .input-box input::placeholder {
-  color: rgba(0, 0, 0, 0.7);
+  color: black;
 }
 
 .input-box input:focus,
 .select-box select:focus {
-  border-color: #000000;
+  border-color: #d32f2f;
 }
 
-/* Columns */
+/* Columns for Responsive Layout */
 .column {
   display: flex;
   gap: 10px;
@@ -94,8 +94,6 @@ header {
 
 /* Gender Selection */
 .gender-box {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 15px;
 }
 
@@ -107,34 +105,32 @@ header {
 
 .gender-option {
   display: flex;
-  gap: 15px;
-}
-
-.gender {
-  position: relative;
-}
-
-.gender input {
-  display: none;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .gender label {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.3);
-  color: #000;
+  color: #000000;
   font-size: 14px;
   cursor: pointer;
-  transition: 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  transition: 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.gender input {
+  display: none;
 }
 
 .gender input:checked + label {
-  background: #b71c1c;
-  color: #fff;
+  background: #d32f2f;
+  color: #000000;
+  border-color: #b71c1c;
 }
 
 /* Select Box */
@@ -146,28 +142,35 @@ header {
 .select-box select {
   width: 100%;
   padding: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3);
   color: #000000;
   font-size: 16px;
-  outline: none;
   cursor: pointer;
-  transition: 0.3s ease;
 }
 
 .select-box select option {
-  background: #000;
+  background: #222;
   color: #fff;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 /* Buttons */
 button {
-  padding: 10px 15px;
-  border: none;
+  padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
+  border: none;
+  transition: 0.3s;
 }
 
 #cancelButton {
@@ -189,13 +192,18 @@ button {
 }
 
 /* Responsive Design */
-@media (max-width: 450px) {
+@media (max-width: 480px) {
   .container {
     width: 100%;
-    padding: 20px;
+    max-width: 380px;
   }
-
   .column {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    max-width: 100%;
   }
 }
