@@ -112,3 +112,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3000);
   }
 });
+
+// Search functionality
+searchInput.addEventListener("input", () => {
+  const filter = searchInput.value.toLowerCase();
+  const rows = userTable.getElementsByTagName("tr");
+
+  for (let row of rows) {
+    const cells = row.getElementsByTagName("td");
+    let found = false;
+
+    for (let cell of cells) {
+      if (cell.textContent.toLowerCase().includes(filter)) {
+        found = true;
+        break;
+      }
+    }
+
+    row.style.display = found ? "" : "none";
+  }
+});

@@ -50,7 +50,24 @@ h1::after {
   border-radius: 2px;
   box-shadow: 0 0 15px rgb(255, 255, 255);
 }
-
+header {
+  font-size: 22px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+header::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background: #ffffff;
+  display: block;
+  margin: 8px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgb(255, 255, 255);
+  margin-bottom: 10px;
+}
 .ADD {
   display: flex;
   justify-content: center;
@@ -155,7 +172,8 @@ button:hover {
   padding: 30px;
   border-radius: 16px;
   text-align: center;
-  width: 380px;
+  width: 500px;
+  height: 20vh;
   font-style: italic;
   font-weight: bold;
   max-width: 90%;
@@ -263,6 +281,16 @@ button:hover {
 
 .toast.success {
   background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
+
+input.search {
+  width: 260px;
+  border: 1px solid #555;
+  display: block;
+  color: #ffffff;
+  padding: 9px 4px 9px 40px;
+  background: transparent;
+  margin-bottom: 5px;
 }
 
 /* Slide-in animation */
