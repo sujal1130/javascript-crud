@@ -1,16 +1,27 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const addButton = document.getElementById("addbutton");
+document.addEventListener("DOMContentLoaded", () => {
   const userTable = document.getElementById("userTable");
+  const addButton = document.getElementById("addButton");
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
+  // Load User Data
+  loadUserData();
 
-  // Function to render users in the table
-  function renderTable() {
+  // Redirect to Form on Add Button Click
+  addButton.addEventListener("click", () => {
+    localStorage.removeItem("editUserIndex");
+    localStorage.removeItem("editUserData");
+    window.location.href = "form.html";
+  });
+
+  // Load User Data from Local Storage
+  function loadUserData() {
     userTable.innerHTML = "";
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
     users.forEach((user, index) => {
       const row = document.createElement("tr");
+
       row.innerHTML = `
-        <td>${user.fullName}</td>
+        <td>${user.firstName}</td>
         <td>${user.lastName}</td>
         <td>${user.email}</td>
         <td>${user.phone}</td>
@@ -18,34 +29,45 @@ document.addEventListener("DOMContentLoaded", function () {
         <td>${user.gender}</td>
         <td>${user.address}</td>
         <td>${user.country}</td>
-        <td>${user.city}</td>
         <td>
-          <button class="edit" onclick="editUser(${index})">Edit</button>
-          <button class="delete" onclick="deleteUser(${index})">Delete</button>
+          <button class="edit-btn" data-index="${index}">Edit</button>
+          <button class="delete-btn" data-index="${index}">Delete</button>
         </td>
       `;
+
       userTable.appendChild(row);
+    });
+
+    // Attach Event Listeners
+    document.querySelectorAll(".delete-btn").forEach((button) => {
+      button.addEventListener("click", deleteUser);
+    });
+
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", editUser);
     });
   }
 
-  // Function to delete user
-  window.deleteUser = function (index) {
-    users.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    renderTable();
-  };
+  // Delete User Function
+  function deleteUser(event) {
+    const index = event.target.getAttribute("data-index");
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-  // Function to edit user
-  window.editUser = function (index) {
-    localStorage.setItem("editIndex", index); // Store index in localStorage
-    window.location.href = "form.html"; // Redirect to edit form
-  };
+    if (confirm("Are you sure you want to delete this user?")) {
+      users.splice(index, 1);
+      localStorage.setItem("users", JSON.stringify(users));
+      loadUserData();
+    }
+  }
 
-  // Add button functionality
-  addButton.addEventListener("click", function () {
-    localStorage.removeItem("editIndex"); // Ensure new user entry
+  // Edit User Function
+  function editUser(event) {
+    const index = event.target.getAttribute("data-index");
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    localStorage.setItem("editUserIndex", index);
+    localStorage.setItem("editUserData", JSON.stringify(users[index]));
+
     window.location.href = "form.html";
-  });
-
-  renderTable(); // Initial render
+  }
 });
