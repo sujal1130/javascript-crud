@@ -1,6 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".form"); // Select the form element
   const cancelButton = document.getElementById("cancelButton"); // Select the cancel button
+  const notification = document.getElementById("notification"); // Select the toast notification element
+
+  // Function to show toast notification
+  const showToast = (message, type = "success") => {
+    notification.textContent = message;
+    notification.className = `toast ${type}`;
+    notification.style.display = "block";
+
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 3000);
+  };
 
   // Function to get the value of an input field based on a selector
   const getInputValue = (selector) =>
@@ -81,20 +93,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (validateForm(formData)) {
       saveUserData(formData); // Save data to local storage
 
-      // Show appropriate success message
-      alert(
+      // Show appropriate success message using toast
+      showToast(
         editUserIndex !== null
-          ? "User Updated Successfully!"
-          : "Registration Successful!"
+          ? "User updated successfully!"
+          : "Registration successful!",
+        "success"
       );
 
       // Clear stored editing data
       localStorage.removeItem("editUserIndex");
       localStorage.removeItem("editUserData");
 
-      // Reset the form and redirect to the homepage
-      form.reset();
-      window.location.href = "index.html";
+      // Reset the form and redirect to the homepage after delay
+      setTimeout(() => {
+        form.reset();
+        window.location.href = "index.html";
+      }, 2000);
     }
   });
 
@@ -108,22 +123,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Form Validation Function
   function validateForm(data) {
+    // Trim all string values to remove extra spaces
+    for (const key in data) {
+      if (typeof data[key] === "string") {
+        data[key] = data[key].trim();
+      }
+    }
+
     // Check if any field is empty
     if (Object.values(data).some((value) => !value)) {
-      alert("Please fill in all required fields.");
+      showToast("Please fill in all required fields.", "error");
       return false;
     }
-    // Validate email format
-    if (!/^\S+@\S+\.\S+$/.test(data.email)) {
-      alert("Invalid email format.");
+
+    // Validate email format (stricter regex)
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email)) {
+      showToast("Invalid email format. Example: example@gmail.com", "error");
       return false;
     }
-    // Ensure phone number is at least 10 digits
-    if (data.phone.length < 10) {
-      alert("Phone number must be at least 10 digits.");
+
+    // Ensure phone number contains only digits and is exactly 10 characters
+    if (!/^\d{10}$/.test(data.phone)) {
+      showToast("Phone number must be exactly 10 digits.", "error");
       return false;
     }
-    return true; // Return true if validation passes
+
+    // Validate birth date (User must be at least 18 years old)
+    const birthDate = new Date(data.birthDate);
+    if (isNaN(birthDate.getTime())) {
+      showToast("Please enter a valid birth date.", "error");
+      return false;
+    }
+
+    // Validate address (minimum 5 characters)
+    if (data.address.length < 5) {
+      showToast(
+        "Please enter a valid address (minimum 5 characters).",
+        "error"
+      );
+      return false;
+    }
+
+    return true; // Return true if all validations pass
   }
 
   // Function to Save User Data in Local Storage
