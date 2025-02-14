@@ -1,94 +1,121 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".form");
   const cancelButton = document.getElementById("cancelButton");
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-  let editIndex = localStorage.getItem("editIndex");
+  const getInputValue = (selector) =>
+    form.querySelector(selector)?.value.trim() || "";
+  const setInputValue = (selector, value) => {
+    const input = form.querySelector(selector);
+    if (input) input.value = value;
+  };
 
-  // If editing, load existing user data into the form
-  if (editIndex !== null) {
-    editIndex = parseInt(editIndex);
-    const user = users[editIndex];
+  const getSelectedGender = () =>
+    document.querySelector("input[name='gender']:checked")?.value || "";
+  const setSelectedGender = (gender) => {
+    const genderInput = form.querySelector(
+      `input[name="gender"][value="${gender}"]`
+    );
+    if (genderInput) genderInput.checked = true;
+  };
 
-    if (user) {
-      document.getElementById("fullName").value = user.fullName;
-      document.getElementById("lastName").value = user.lastName;
-      document.getElementById("email").value = user.email;
-      document.getElementById("phone").value = user.phone;
-      document.getElementById("birthDate").value = user.birthDate;
-
-      // Ensure gender field exists before setting value
-      const genderInput = document.querySelector(
-        `input[name="gender"][value="${user.gender}"]`
+  // Load data if editing an existing user
+  const editUserIndex = localStorage.getItem("editUserIndex");
+  if (editUserIndex !== null) {
+    const editUserData = JSON.parse(localStorage.getItem("editUserData"));
+    if (editUserData) {
+      setInputValue(
+        "input[placeholder='Enter first name']",
+        editUserData.firstName
       );
-      if (genderInput) genderInput.checked = true;
+      setInputValue(
+        "input[placeholder='Enter last name']",
+        editUserData.lastName
+      );
+      setInputValue(
+        "input[placeholder='Enter email address']",
+        editUserData.email
+      );
+      setInputValue(
+        "input[placeholder='Enter phone number']",
+        editUserData.phone
+      );
+      setInputValue("input[type='date']", editUserData.birthDate);
+      setSelectedGender(editUserData.gender);
+      setInputValue(
+        "input[placeholder='Enter street address']",
+        editUserData.address
+      );
 
-      document.getElementById("address").value = user.address;
-      document.getElementById("country").value = user.country;
-      document.getElementById("city").value = user.city;
+      // Set Country Selection
+      const countrySelect = form.querySelector("select");
+      if (countrySelect) {
+        countrySelect.value = editUserData.country;
+      }
     }
   }
 
-  // Function to handle form submission
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form refresh
+  // Handle Form Submission
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    // Get form values
-    const fullName = document.getElementById("fullName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const birthDate = document.getElementById("birthDate").value;
-    const gender =
-      document.querySelector("input[name='gender']:checked")?.value || "";
-    const address = document.getElementById("address").value;
-    const country = document.getElementById("country").value;
-    const city = document.getElementById("city").value;
-
-    // Validation
-    if (
-      !fullName ||
-      !lastName ||
-      !email ||
-      !phone ||
-      !birthDate ||
-      !gender ||
-      !address ||
-      !country ||
-      !city
-    ) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    const user = {
-      fullName,
-      lastName,
-      email,
-      phone,
-      birthDate,
-      gender,
-      address,
-      country,
-      city,
+    const formData = {
+      firstName: getInputValue("input[placeholder='Enter first name']"),
+      lastName: getInputValue("input[placeholder='Enter last name']"),
+      email: getInputValue("input[placeholder='Enter email address']"),
+      phone: getInputValue("input[placeholder='Enter phone number']"),
+      birthDate: getInputValue("input[type='date']"),
+      gender: getSelectedGender(),
+      address: getInputValue("input[placeholder='Enter street address']"),
+      country: form.querySelector("select")?.value || "",
     };
 
-    if (editIndex !== null) {
-      // Update existing user
-      users[editIndex] = user;
-      localStorage.removeItem("editIndex"); // Remove edit flag
-    } else {
-      // Add new user
-      users.push(user);
+    if (validateForm(formData)) {
+      saveUserData(formData);
+      alert(
+        editUserIndex !== null
+          ? "User Updated Successfully!"
+          : "Registration Successful!"
+      );
+      localStorage.removeItem("editUserIndex");
+      localStorage.removeItem("editUserData");
+      form.reset();
+      window.location.href = "index.html"; // Redirect to home page
     }
+  });
 
+  // Handle Cancel Button
+  cancelButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    localStorage.removeItem("editUserIndex");
+    localStorage.removeItem("editUserData");
+    window.location.href = "index.html";
+  });
+
+  // Form Validation
+  function validateForm(data) {
+    if (Object.values(data).some((value) => !value)) {
+      alert("Please fill in all required fields.");
+      return false;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(data.email)) {
+      alert("Invalid email format.");
+      return false;
+    }
+    if (data.phone.length < 10) {
+      alert("Phone number must be at least 10 digits.");
+      return false;
+    }
+    return true;
+  }
+
+  // Save Data to Local Storage
+  function saveUserData(data) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    if (editUserIndex !== null) {
+      users[editUserIndex] = data;
+    } else {
+      users.push(data);
+    }
     localStorage.setItem("users", JSON.stringify(users));
-    window.location.href = "index.html"; // Redirect back
-  });
-
-  // Cancel button functionality
-  cancelButton.addEventListener("click", function () {
-    localStorage.removeItem("editIndex"); // Remove edit flag
-    window.location.href = "index.html"; // Redirect back
-  });
+  }
 });
