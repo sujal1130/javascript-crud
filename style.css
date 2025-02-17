@@ -182,7 +182,9 @@ button:hover {
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   position: relative;
   overflow: hidden;
+  margin: 0 auto; /* Center modal */
 }
+
 .modal::before {
   content: "";
   position: absolute;
@@ -194,6 +196,7 @@ button:hover {
   filter: brightness(0.5);
   z-index: -1;
 }
+
 .modalcontainer.show {
   visibility: visible;
   opacity: 1;
@@ -234,9 +237,9 @@ button:hover {
 
 /* Yes Button */
 #confirmYes {
-  background: linear-gradient(135deg, #ff4f5a, #d8313a);
+  background: linear-gradient(135deg, #4f95ff, #3174d8);
   color: white;
-  box-shadow: 0px 4px 10px rgba(255, 79, 90, 0.4);
+  box-shadow: 0px 4px 10px rgba(79, 170, 255, 0.4);
 }
 
 #confirmYes:hover {
@@ -257,6 +260,46 @@ button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 6px 14px rgba(85, 85, 85, 0.5);
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .modal {
+    width: 80%; /* Increase width for smaller screens */
+    height: 25vh; /* Increase height */
+    padding: 20px; /* Reduce padding */
+  }
+
+  .modal-content p {
+    font-size: 16px; /* Adjust font size for readability */
+  }
+
+  .modal-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 8px;
+  }
+
+  .modal-buttons button {
+    padding: 12px; /* Adjust padding for smaller buttons */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal {
+    width: 90%; /* Take up more space on very small screens */
+    height: 30vh; /* Increase height */
+    padding: 15px; /* Reduce padding even further */
+  }
+
+  .modal-content p {
+    font-size: 14px; /* Adjust font size for very small screens */
+  }
+
+  .modal-buttons button {
+    font-size: 14px; /* Adjust button font size */
+    padding: 10px; /* Adjust padding */
+  }
+}
+
 .pagination {
   text-align: center;
 }
