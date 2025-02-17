@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       notification.style.display = "none";
-    }, 3000);
+    }, 6000);
   };
 
   // Function to get the value of an input field based on a selector
@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (input) input.value = value;
   };
 
+  const phoneInput = form.querySelector(
+    "input[placeholder='Enter phone number']"
+  );
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (event) => {
+      // Allow only digits in the phone number field
+      event.target.value = event.target.value.replace(/\D/g, "");
+    });
+  }
   // Function to get the selected gender radio button value
   const getSelectedGender = () =>
     document.querySelector("input[name='gender']:checked")?.value || "";
