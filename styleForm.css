@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background: #000 url("japan.jpg") no-repeat center center fixed;
+    background-size: cover;
+  }
+
+/* Glassmorphism Container */
+.container {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 25px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input Box */
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  font-size: 14px;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.input-box input,
+.select-box select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(2, 2, 2, 0.3);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #000000;
+  outline: none;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.input-box input::placeholder {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.input-box input:focus,
+.select-box select:focus {
+  border-color: #000000;
+}
+
+/* Columns */
+.column {
+  display: flex;
+  gap: 10px;
+}
+
+.column .input-box {
+  flex: 1;
+}
+
+/* Gender Selection */
+.gender-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+  
+  .gender-box h3 {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+  }
+  
+  .gender-option {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .gender {
+    position: relative;
+  }
+  
+  .gender input {
+    display: none;
+  }
+  
+  .gender label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    color: #000;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+  
+  .gender input:checked + label {
+    background: #ff4757;
+    color: #fff;
+    border-color: #e84118;
+  }
+  
+  /* Select Box */
+  .select-box {
+    position: relative;
+    width: 100%;
+  }
+  
+  .select-box select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #000000;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .select-box select option {
+    background: #000;
+    color: #fff;
+  }
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#cancelButton {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+#cancelButton:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+#submitButton {
+  background: #ff4757;
+  color: #fff;
+}
+
+#submitButton:hover {
+  background: #e84118;
+}
+
+/* Responsive Design */
+@media (max-width: 450px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+}
