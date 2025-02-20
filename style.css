@@ -1,63 +1,113 @@
 /* General Styles */
 body {
-   font-family: Arial, sans-serif;
-   background-color: #f4f4f4;
-   margin: 0;
-   padding: 0;
-   text-align: center;
- }
- 
- 
- /* Search Bar */
- /* .search {
-   display: flex;
-   justify-content: center;
-   padding: 10px;
- }
- 
- .search input {
-   padding: 10px;
-   width: 250px;
-   border: 1px solid #ccc;
-   border-radius: 5px;
-   margin-right: 5px;
- }
- 
- .search button {
-   background: #b71c1c;
-   color: white;
-   border: none;
-   padding: 10px 15px;
-   border-radius: 5px;
-   cursor: pointer;
-   transition: 0.3s;
- }
- 
- .search button:hover {
-   background: #9a0007;
- } */
- 
- /* Title */
- h1 {
-   margin-top: 20px;
-   color: #333;
-   font-size: 28px;
- }
- 
- /* Add Button */
- .add {
-   background: #d32f2f;
-   color: white;
-   border: none;
-   padding: 10px 20px;
-   font-size: 18px;
-   border-radius: 5px;
-   cursor: pointer;
-   transition: 0.3s;
-   margin-top: 15px;
- }
- 
- .add:hover {
-   background: #b71c1c;
- }
- 
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* Title Styling */
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #d32f2f;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Underline Effect */
+h1::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #d32f2f;
+  display: block;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+/* Header Styling */
+header {
+  font-size: 24px;
+  font-weight: 600;
+  color: #d32f2f;
+  padding: 12px 0;
+  margin-bottom: 20px;
+}
+
+/* Add Button */
+.add {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 15px;
+}
+
+.add:hover {
+  background: #b71c1c;
+}
+
+/* Table Container */
+.container {
+  width: 90%;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* Table Header */
+thead {
+  background-color: #d32f2f;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+/* Table Rows */
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+/* Hover Effect */
+tbody tr:hover {
+  background-color: #ffebee;
+}
+
+/* Table Data */
+td {
+  padding: 10px;
+  color: #424242;
+}
