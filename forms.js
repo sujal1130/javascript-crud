@@ -1,88 +1,189 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector(".form");
-  const cancelButton = document.getElementById("cancelButton");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".form"); // Select the form element
+  const cancelButton = document.getElementById("cancelButton"); // Select the cancel button
+  const notification = document.getElementById("notification"); // Select the toast notification element
 
-  let users = JSON.parse(localStorage.getItem("users")) || [];
-  let editIndex = localStorage.getItem("editIndex");
+  // Function to show toast notification
+  const showToast = (message, type = "success") => {
+    notification.textContent = message;
+    notification.className = `toast ${type}`;
+    notification.style.display = "block";
 
-  // If editing, load existing user data into the form
-  if (editIndex !== null) {
-    editIndex = parseInt(editIndex);
-    const user = users[editIndex];
+    setTimeout(() => {
+      notification.style.display = "none";
+    }, 6000);
+  };
 
-    document.getElementById("fullName").value = user.fullName;
-    document.getElementById("lastName").value = user.lastName;
-    document.getElementById("email").value = user.email;
-    document.getElementById("phone").value = user.phone;
-    document.getElementById("birthDate").value = user.birthDate;
-    document.querySelector(
-      `input[name="gender"][value="${user.gender}"]`
-    ).checked = true;
-    document.getElementById("address").value = user.address;
-    document.getElementById("country").value = user.country;
-    document.getElementById("city").value = user.city;
+  // Function to get the value of an input field based on a selector
+  const getInputValue = (selector) =>
+    form.querySelector(selector)?.value.trim() || "";
+
+  // Function to set the value of an input field
+  const setInputValue = (selector, value) => {
+    const input = form.querySelector(selector);
+    if (input) input.value = value;
+  };
+
+  const phoneInput = form.querySelector(
+    "input[placeholder='Enter phone number']"
+  );
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (event) => {
+      // Allow only digits in the phone number field
+      event.target.value = event.target.value.replace(/\D/g, "");
+    });
+  }
+  // Function to get the selected gender radio button value
+  const getSelectedGender = () =>
+    document.querySelector("input[name='gender']:checked")?.value || "";
+
+  // Function to set the selected gender radio button
+  const setSelectedGender = (gender) => {
+    const genderInput = form.querySelector(
+      `input[name="gender"][value="${gender}"]`
+    );
+    if (genderInput) genderInput.checked = true;
+  };
+
+  // Check if user is editing an existing entry
+  const editUserIndex = localStorage.getItem("editUserIndex");
+  if (editUserIndex !== null) {
+    const editUserData = JSON.parse(localStorage.getItem("editUserData"));
+    if (editUserData) {
+      // Populate form fields with existing user data
+      setInputValue(
+        "input[placeholder='Enter first name']",
+        editUserData.firstName
+      );
+      setInputValue(
+        "input[placeholder='Enter last name']",
+        editUserData.lastName
+      );
+      setInputValue(
+        "input[placeholder='Enter email address']",
+        editUserData.email
+      );
+      setInputValue(
+        "input[placeholder='Enter phone number']",
+        editUserData.phone
+      );
+      setInputValue("input[type='date']", editUserData.birthDate);
+      setSelectedGender(editUserData.gender);
+      setInputValue(
+        "input[placeholder='Enter street address']",
+        editUserData.address
+      );
+
+      // Set selected country
+      const countrySelect = form.querySelector("select");
+      if (countrySelect) {
+        countrySelect.value = editUserData.country;
+      }
+    }
   }
 
-  // Function to handle form submission
-  form.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form refresh
+  // Handle Form Submission
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent default form submission
 
-    // Get form values
-    const fullName = document.getElementById("fullName").value;
-    const lastName = document.getElementById("lastName").value;
-    const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const birthDate = document.getElementById("birthDate").value;
-    const gender =
-      document.querySelector("input[name='gender']:checked")?.value || "";
-    const address = document.getElementById("address").value;
-    const country = document.getElementById("country").value;
-    const city = document.getElementById("city").value;
-
-    // Validation
-    if (
-      !fullName ||
-      !lastName ||
-      !email ||
-      !phone ||
-      !birthDate ||
-      !gender ||
-      !address ||
-      !country ||
-      !city
-    ) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    const user = {
-      fullName,
-      lastName,
-      email,
-      phone,
-      birthDate,
-      gender,
-      address,
-      country,
-      city,
+    // Collect form data into an object
+    const formData = {
+      firstName: getInputValue("input[placeholder='Enter first name']"),
+      lastName: getInputValue("input[placeholder='Enter last name']"),
+      email: getInputValue("input[placeholder='Enter email address']"),
+      phone: getInputValue("input[placeholder='Enter phone number']"),
+      birthDate: getInputValue("input[type='date']"),
+      gender: getSelectedGender(),
+      address: getInputValue("input[placeholder='Enter street address']"),
+      country: form.querySelector("select")?.value || "",
     };
 
-    if (editIndex !== null) {
-      // Update existing user
-      users[editIndex] = user;
-      localStorage.removeItem("editIndex"); // Remove edit flag
-    } else {
-      // Add new user
-      users.push(user);
+    // Validate form data before proceeding
+    if (validateForm(formData)) {
+      saveUserData(formData); // Save data to local storage
+
+      // Show appropriate success message using toast
+      showToast(
+        editUserIndex !== null
+          ? "User updated successfully!"
+          : "Registration successful!",
+        "success"
+      );
+
+      // Clear stored editing data
+      localStorage.removeItem("editUserIndex");
+      localStorage.removeItem("editUserData");
+
+      // Reset the form and redirect to the homepage after delay
+      setTimeout(() => {
+        form.reset();
+        window.location.href = "index.html";
+      }, 2000);
+    }
+  });
+
+  // Handle Cancel Button Click
+  cancelButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default action
+    localStorage.removeItem("editUserIndex"); // Remove editing index
+    localStorage.removeItem("editUserData"); // Remove editing data
+    window.location.href = "index.html"; // Redirect to home page
+  });
+
+  // Form Validation Function
+  function validateForm(data) {
+    // Trim all string values to remove extra spaces
+    for (const key in data) {
+      if (typeof data[key] === "string") {
+        data[key] = data[key].trim();
+      }
     }
 
-    localStorage.setItem("users", JSON.stringify(users));
-    window.location.href = "index.html"; // Redirect back
-  });
+    // Check if any field is empty
+    if (Object.values(data).some((value) => !value)) {
+      showToast("Please fill in all required fields.", "error");
+      return false;
+    }
 
-  // Cancel button functionality
-  cancelButton.addEventListener("click", function () {
-    localStorage.removeItem("editIndex"); // Remove edit flag
-    window.location.href = "index.html"; // Redirect back
-  });
+    // Validate email format (stricter regex)
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email)) {
+      showToast("Invalid email format. Example: example@gmail.com", "error");
+      return false;
+    }
+
+    // Ensure phone number contains only digits and is exactly 10 characters
+    if (!/^\d{10}$/.test(data.phone)) {
+      showToast("Phone number must be exactly 10 digits.", "error");
+      return false;
+    }
+
+    // Validate birth date (User must be at least 18 years old)
+    const birthDate = new Date(data.birthDate);
+    if (isNaN(birthDate.getTime())) {
+      showToast("Please enter a valid birth date.", "error");
+      return false;
+    }
+
+    // Validate address (minimum 5 characters)
+    if (data.address.length < 5) {
+      showToast(
+        "Please enter a valid address (minimum 5 characters).",
+        "error"
+      );
+      return false;
+    }
+
+    return true; // Return true if all validations pass
+  }
+
+  // Function to Save User Data in Local Storage
+  function saveUserData(data) {
+    let users = JSON.parse(localStorage.getItem("users")) || []; // Get existing users
+    if (editUserIndex !== null) {
+      users[editUserIndex] = data; // Update existing user
+    } else {
+      users.push(data); // Add new user
+    }
+    localStorage.setItem("users", JSON.stringify(users)); // Store updated users list
+  }
 });
