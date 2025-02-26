@@ -50,6 +50,7 @@ h1::after {
   border-radius: 2px;
   box-shadow: 0 0 15px rgb(255, 255, 255);
 }
+
 header {
   font-size: 22px;
   font-weight: bold;
@@ -72,6 +73,7 @@ header::after {
   display: flex;
   justify-content: center;
 }
+
 /* Add Button */
 .add {
   background: #d32f2f;
@@ -86,6 +88,7 @@ header::after {
 
 .add:hover {
   background: #b71c1c;
+  transform: scale(1.05);
 }
 
 /* User Table */

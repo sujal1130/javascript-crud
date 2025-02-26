@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
       userTable.appendChild(row); // Append the row to the table
     });
+  }
 
     // Attach event listeners to delete buttons
     document.querySelectorAll(".delete-btn").forEach((button) => {
