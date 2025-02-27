@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notification.style.display = "block";
     setTimeout(() => {
       notification.style.display = "none";
-    }, 3000);
+    }, 6000);
   }
 
   // Search functionality
