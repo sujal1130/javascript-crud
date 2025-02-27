@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("searchInput"); // Define the search input element
   const rowsPerPageSelect = document.getElementById("rowsPerPageSelect"); // Dropdown for rows per page
   const headers = document.querySelectorAll("th.sortable"); // Get sortable headers
+
   // Initialize variables
   let currentPage = 1;
   let rowsPerPage = 5;
@@ -52,24 +53,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const row = document.createElement("tr"); // Create a new row for each user
       // Populate the row with user details
       row.innerHTML = `
-        <td>${user.firstName}</td>
-        <td>${user.lastName}</td>
-        <td>${user.email}</td>
-        <td>${user.phone}</td>
-        <td>${user.birthDate}</td>
-        <td>${user.gender}</td>
-        <td>${user.address}</td>
-        <td>${user.country}</td>
+        <td>${user.firstName || ""}</td>
+        <td>${user.lastName || ""}</td>
+        <td>${user.email || ""}</td>
+        <td>${user.phone || ""}</td>
+        <td>${user.birthDate || ""}</td>
+        <td>${user.gender || ""}</td>
+        <td>${user.address || ""}</td>
+        <td>${user.country || ""}</td>
         <td>
-          <button class="edit-btn" data-index="${index}">Edit</button>
-          <button class="delete-btn" data-index="${index}">Delete</button>
+          <button class="edit-btn" data-index="${start + index}">Edit</button>
+          <button class="delete-btn" data-index="${
+            start + index
+          }">Delete</button>
         </td>
       `;
       userTable.appendChild(row); // Append the row to the table
     });
+
+    attachEventListeners();
   }
 
-    // Attach event listeners to delete buttons
+  // Attach event listeners to delete buttons
+  function attachEventListeners() {
     document.querySelectorAll(".delete-btn").forEach((button) => {
       button.addEventListener("click", (event) => {
         const index = event.target.getAttribute("data-index");
@@ -94,11 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     users.sort((a, b) => {
-      let valueA = a[columnKey].toString().toLowerCase();
-      let valueB = b[columnKey].toString().toLowerCase();
+      let valueA = a[columnKey] ? a[columnKey].toString().toLowerCase() : "";
+      let valueB = b[columnKey] ? b[columnKey].toString().toLowerCase() : "";
 
-      if (!isNaN(valueA) && !isNaN(valueB)) {
-        return (valueA - valueB) * sortOrder; // Numeric sorting
+      if (!isNaN(parseFloat(valueA)) && !isNaN(parseFloat(valueB))) {
+        return (parseFloat(valueA) - parseFloat(valueB)) * sortOrder; // Numeric sorting
       }
       return valueA.localeCompare(valueB) * sortOrder; // Alphabetical sorting
     });
@@ -200,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notification.style.display = "block";
     setTimeout(() => {
       notification.style.display = "none";
-    }, 6000);
+    }, 3000);
   }
 
   // Search functionality
