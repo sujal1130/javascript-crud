@@ -176,10 +176,10 @@ button:hover {
   border-radius: 16px;
   text-align: center;
   width: 500px;
-  height: 20vh;
+  max-width: 90%;
+  height: auto;
   font-style: italic;
   font-weight: bold;
-  max-width: 90%;
   box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
   transform: scale(0.85);
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -223,8 +223,10 @@ button:hover {
 /* Modal Buttons */
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 10px;
 }
 
 .modal-buttons button {
@@ -267,9 +269,8 @@ button:hover {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .modal {
-    width: 80%; /* Increase width for smaller screens */
-    height: 25vh; /* Increase height */
-    padding: 20px; /* Reduce padding */
+    width: 90%;
+    padding: 20px;
   }
 
   .modal-content p {
@@ -282,24 +283,25 @@ button:hover {
   }
 
   .modal-buttons button {
-    padding: 12px; /* Adjust padding for smaller buttons */
+    font-size: 14px;
+    padding: 10px;
+    min-width: 100%;
   }
 }
 
 @media (max-width: 480px) {
   .modal {
-    width: 90%; /* Take up more space on very small screens */
-    height: 30vh; /* Increase height */
-    padding: 15px; /* Reduce padding even further */
+    width: 95%;
+    padding: 15px;
   }
 
   .modal-content p {
-    font-size: 14px; /* Adjust font size for very small screens */
+    font-size: 14px;
   }
 
   .modal-buttons button {
-    font-size: 14px; /* Adjust button font size */
-    padding: 10px; /* Adjust padding */
+    font-size: 14px;
+    padding: 8px;
   }
 }
 
