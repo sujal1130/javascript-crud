@@ -5,7 +5,7 @@
 ## 📝 Registration Form  
 📌 This is a **registration form** where users can sign up seamlessly.  
 
-🚧 **Current Status:**  
+### 🚧 **Current Status:**  
 ⚙️ I am actively working on fixing existing bugs and making necessary improvements to enhance functionality. 🔧  
 
 🔹 Stay tuned for upcoming updates!  
@@ -13,7 +13,7 @@
 
 ---
 
-### 🎨 UI & Styling Enhancements  
+## 🎨 UI & Styling Enhancements  
 🎨 I am refining the design with **modern aesthetics and an improved user experience** to ensure a polished, professional interface.  
 
 ✨ **Improvements include:**  
