@@ -360,6 +360,7 @@ button:hover {
   display: inline-block;
   width: 100%; /* Ensures proper width */
   max-width: 300px; /* Adjust as needed */
+  margin-bottom: 10px;
 }
 
 .search {
@@ -373,7 +374,6 @@ button:hover {
   color: #ffffff;
   outline: none;
   transition: border-color 0.3s ease-in-out;
-  margin-bottom: 8px;
 }
 
 /* Focus effect */
