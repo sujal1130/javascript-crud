@@ -6,12 +6,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to show toast notification
   const showToast = (message, type = "success") => {
     notification.textContent = message;
-    notification.className = `toast ${type}`;
+    notification.classList.add("toast", type);
     notification.style.display = "block";
 
     setTimeout(() => {
       notification.style.display = "none";
-    }, 6000);
+      notification.classList.remove("toast", type);
+    }, 7000);
   };
 
   // Function to get the value of an input field based on a selector
@@ -46,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Check if user is editing an existing entry
-  const editUserIndex = localStorage.getItem("editUserIndex");
-  if (editUserIndex !== null) {
+  const editUserIndex = parseInt(localStorage.getItem("editUserIndex"), 10);
+  if (!isNaN(editUserIndex)) {
     const editUserData = JSON.parse(localStorage.getItem("editUserData"));
     if (editUserData) {
       // Populate form fields with existing user data
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Show appropriate success message using toast
       showToast(
-        editUserIndex !== null
+        !isNaN(editUserIndex) && editUserIndex >= 0
           ? "User updated successfully!"
           : "Registration successful!",
         "success"
@@ -139,9 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Check if any field is empty
-    if (Object.values(data).some((value) => !value)) {
-      showToast("Please fill in all required fields.", "error");
+    // Field-wise validation
+    if (!data.firstName) {
+      showToast("First Name is required.", "error");
+      return false;
+    }
+
+    if (!data.lastName) {
+      showToast("Last Name is required.", "error");
+      return false;
+    }
+
+    if (!data.email) {
+      showToast("Email Address is required.", "error");
       return false;
     }
 
@@ -151,16 +162,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
+    if (!data.phone) {
+      showToast("Phone Number is required.", "error");
+      return false;
+    }
+
     // Ensure phone number contains only digits and is exactly 10 characters
     if (!/^\d{10}$/.test(data.phone)) {
       showToast("Phone number must be exactly 10 digits.", "error");
       return false;
     }
 
-    // Validate birth date (User must be at least 18 years old)
-    const birthDate = new Date(data.birthDate);
-    if (isNaN(birthDate.getTime())) {
-      showToast("Please enter a valid birth date.", "error");
+    if (!data.birthDate) {
+      showToast("Birth Date is required.", "error");
+      return false;
+    }
+
+    if (!data.gender) {
+      showToast("Gender is required.", "error");
+      return false;
+    }
+
+    if (!data.address) {
+      showToast("Address is required.", "error");
       return false;
     }
 
@@ -173,13 +197,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
+    if (!data.country || data.country === "Country") {
+      showToast("Please select a valid country.", "error");
+      return false;
+    }
+
     return true; // Return true if all validations pass
   }
 
   // Function to Save User Data in Local Storage
   function saveUserData(data) {
     let users = JSON.parse(localStorage.getItem("users")) || []; // Get existing users
-    if (editUserIndex !== null) {
+    if (!isNaN(editUserIndex)) {
       users[editUserIndex] = data; // Update existing user
     } else {
       users.push(data); // Add new user
