@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       notification.style.display = "none";
-    }, 3000);
+    }, 7000);
   };
 
   // Function to get the value of an input field based on a selector
@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (input) input.value = value;
   };
 
+  const phoneInput = form.querySelector(
+    "input[placeholder='Enter phone number']"
+  );
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (event) => {
+      // Allow only digits in the phone number field
+      event.target.value = event.target.value.replace(/\D/g, "");
+    });
+  }
   // Function to get the selected gender radio button value
   const getSelectedGender = () =>
     document.querySelector("input[name='gender']:checked")?.value || "";
@@ -130,9 +139,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // Check if any field is empty
-    if (Object.values(data).some((value) => !value)) {
-      showToast("Please fill in all required fields.", "error");
+    // Field-wise validation
+    if (!data.firstName) {
+      showToast("First Name is required.", "error");
+      return false;
+    }
+
+    if (!data.lastName) {
+      showToast("Last Name is required.", "error");
+      return false;
+    }
+
+    if (!data.email) {
+      showToast("Email Address is required.", "error");
       return false;
     }
 
@@ -142,16 +161,29 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
+    if (!data.phone) {
+      showToast("Phone Number is required.", "error");
+      return false;
+    }
+
     // Ensure phone number contains only digits and is exactly 10 characters
     if (!/^\d{10}$/.test(data.phone)) {
       showToast("Phone number must be exactly 10 digits.", "error");
       return false;
     }
 
-    // Validate birth date (User must be at least 18 years old)
-    const birthDate = new Date(data.birthDate);
-    if (isNaN(birthDate.getTime())) {
-      showToast("Please enter a valid birth date.", "error");
+    if (!data.birthDate) {
+      showToast("Birth Date is required.", "error");
+      return false;
+    }
+
+    if (!data.gender) {
+      showToast("Gender is required.", "error");
+      return false;
+    }
+
+    if (!data.address) {
+      showToast("Address is required.", "error");
       return false;
     }
 
@@ -161,6 +193,11 @@ document.addEventListener("DOMContentLoaded", () => {
         "Please enter a valid address (minimum 5 characters).",
         "error"
       );
+      return false;
+    }
+
+    if (Object.values(data).some((value) => !value)) {
+      showToast("Country is required.", "error");
       return false;
     }
 
