@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 body {
@@ -15,9 +15,20 @@ body {
   justify-content: center;
   min-height: 100vh;
   width: 100%;
-  background: #000 url("japan.jpg") no-repeat center center fixed;
-  background-size: cover;
+  background: none;
   padding: 20px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("japan.jpg") no-repeat center center;
+  background-size: cover;
+  z-index: -1;
 }
 
 /* Glassmorphism Container */
@@ -55,9 +66,10 @@ header {
 }
 
 .input-box label {
-  font-size: 14px;
+  font-size: 16px;
   color: #000000;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-box input,
@@ -139,6 +151,15 @@ header {
   width: 100%;
 }
 
+.select-box label {
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  display: block;
+}
+
 .select-box select {
   width: 100%;
   padding: 12px;
@@ -189,6 +210,58 @@ button {
 
 #submitButton:hover {
   background-color: #b71c1c;
+}
+
+.toast {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ff4f5a, #ff784f);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.toast.error {
+  background: linear-gradient(135deg, #ff3b3b, #ff6363);
+}
+
+.toast.success {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Responsive Design */

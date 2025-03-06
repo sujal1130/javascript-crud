@@ -5,30 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Form</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
-    <header></header>
-
+    <div id="notification" class="toast"></div>
     <main>
       <h1>Data Table</h1>
-
-      <!-- Add Button -->
       <div class="ADD">
         <button class="add" id="addButton">Add</button>
+      </div>
+      <div class="search-container">
+        <input
+          class="search"
+          type="search"
+          id="searchInput"
+          placeholder="Search..."
+        />
+        <i class="fas fa-search search-icon"></i>
       </div>
       <section class="container">
         <header>Users List</header>
         <table border="1">
           <thead>
             <tr>
-              <th>Full Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Birth Date</th>
-              <th>Gender</th>
-              <th>Address</th>
-              <th>Country</th>
+              <th class="sortable" data-column="firstName">First Name</th>
+              <th class="sortable" data-column="lastName">Last Name</th>
+              <th class="sortable" data-column="email">Email</th>
+              <th class="sortable" data-column="phone">Phone</th>
+              <th class="sortable" data-column="birthDate">Birth Date</th>
+              <th class="sortable" data-column="gender">Gender</th>
+              <th class="sortable" data-column="address">Address</th>
+              <th class="sortable" data-column="country">Country</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -37,6 +47,26 @@
       </section>
     </main>
 
+    <select class="rowsPerPageSelects" id="rowsPerPageSelect">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      <option value="20">20</option>
+    </select>
+
+    <div id="pagination" class="pagination"></div>
+
+    <div class="modalcontainer">
+      <div id="confirmDialog" class="modal">
+        <div class="modal-content">
+          <p id="confirmMessage"></p>
+          <div class="modal-buttons">
+            <button id="confirmYes">Yes</button>
+            <button id="confirmNo">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

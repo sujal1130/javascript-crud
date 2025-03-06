@@ -1,6 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".form"); // Select the form element
   const cancelButton = document.getElementById("cancelButton"); // Select the cancel button
+  const notification = document.getElementById("notification"); // Select the toast notification element
+
+  // Function to show toast notification
+  const showToast = (message, type = "success") => {
+    notification.textContent = message;
+    notification.classList.add("toast", type);
+    notification.style.display = "block";
+
+    setTimeout(() => {
+      notification.style.display = "none";
+      notification.classList.remove("toast", type);
+    }, 7000);
+  };
 
   // Function to get the value of an input field based on a selector
   const getInputValue = (selector) =>
@@ -12,6 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (input) input.value = value;
   };
 
+  const phoneInput = form.querySelector(
+    "input[placeholder='Enter phone number']"
+  );
+  if (phoneInput) {
+    phoneInput.addEventListener("input", (event) => {
+      // Allow only digits in the phone number field
+      event.target.value = event.target.value.replace(/\D/g, "");
+    });
+  }
   // Function to get the selected gender radio button value
   const getSelectedGender = () =>
     document.querySelector("input[name='gender']:checked")?.value || "";
@@ -25,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Check if user is editing an existing entry
-  const editUserIndex = localStorage.getItem("editUserIndex");
-  if (editUserIndex !== null) {
+  const editUserIndex = parseInt(localStorage.getItem("editUserIndex"), 10);
+  if (!isNaN(editUserIndex)) {
     const editUserData = JSON.parse(localStorage.getItem("editUserData"));
     if (editUserData) {
       // Populate form fields with existing user data
@@ -81,20 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
     if (validateForm(formData)) {
       saveUserData(formData); // Save data to local storage
 
-      // Show appropriate success message
-      alert(
-        editUserIndex !== null
-          ? "User Updated Successfully!"
-          : "Registration Successful!"
+      // Show appropriate success message using toast
+      showToast(
+        !isNaN(editUserIndex) && editUserIndex >= 0
+          ? "User updated successfully!"
+          : "Registration successful!",
+        "success"
       );
 
       // Clear stored editing data
       localStorage.removeItem("editUserIndex");
       localStorage.removeItem("editUserData");
 
-      // Reset the form and redirect to the homepage
-      form.reset();
-      window.location.href = "index.html";
+      // Reset the form and redirect to the homepage after delay
+      setTimeout(() => {
+        form.reset();
+        window.location.href = "index.html";
+      }, 2000);
     }
   });
 
@@ -108,28 +133,83 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Form Validation Function
   function validateForm(data) {
-    // Check if any field is empty
-    if (Object.values(data).some((value) => !value)) {
-      alert("Please fill in all required fields.");
+    // Trim all string values to remove extra spaces
+    for (const key in data) {
+      if (typeof data[key] === "string") {
+        data[key] = data[key].trim();
+      }
+    }
+
+    // Field-wise validation
+    if (!data.firstName) {
+      showToast("First Name is required.", "error");
       return false;
     }
-    // Validate email format
-    if (!/^\S+@\S+\.\S+$/.test(data.email)) {
-      alert("Invalid email format.");
+
+    if (!data.lastName) {
+      showToast("Last Name is required.", "error");
       return false;
     }
-    // Ensure phone number is at least 10 digits
-    if (data.phone.length < 10) {
-      alert("Phone number must be at least 10 digits.");
+
+    if (!data.email) {
+      showToast("Email Address is required.", "error");
       return false;
     }
-    return true; // Return true if validation passes
+
+    // Validate email format (stricter regex)
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(data.email)) {
+      showToast("Invalid email format. Example: example@gmail.com", "error");
+      return false;
+    }
+
+    if (!data.phone) {
+      showToast("Phone Number is required.", "error");
+      return false;
+    }
+
+    // Ensure phone number contains only digits and is exactly 10 characters
+    if (!/^\d{10}$/.test(data.phone)) {
+      showToast("Phone number must be exactly 10 digits.", "error");
+      return false;
+    }
+
+    if (!data.birthDate) {
+      showToast("Birth Date is required.", "error");
+      return false;
+    }
+
+    if (!data.gender) {
+      showToast("Gender is required.", "error");
+      return false;
+    }
+
+    if (!data.address) {
+      showToast("Address is required.", "error");
+      return false;
+    }
+
+    // Validate address (minimum 5 characters)
+    if (data.address.length < 5) {
+      showToast(
+        "Please enter a valid address (minimum 5 characters).",
+        "error"
+      );
+      return false;
+    }
+
+    if (!data.country || data.country === "Country") {
+      showToast("Please select a valid country.", "error");
+
+      return false;
+    }
+
+    return true; // Return true if all validations pass
   }
 
   // Function to Save User Data in Local Storage
   function saveUserData(data) {
     let users = JSON.parse(localStorage.getItem("users")) || []; // Get existing users
-    if (editUserIndex !== null) {
+    if (!isNaN(editUserIndex)) {
       users[editUserIndex] = data; // Update existing user
     } else {
       users.push(data); // Add new user
