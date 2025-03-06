@@ -53,11 +53,15 @@ Click 'Delete' to remove an entry.
 
 Clone the repository:
 
+```bash
 git clone https://github.com/sujal1130/javascript-crud.git
+```
 
 Navigate to the project directory:
 
+```bash
 cd javascript-crud
+```
 
 Open index.html in a browser.
 
