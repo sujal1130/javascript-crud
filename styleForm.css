@@ -66,9 +66,10 @@ header {
 }
 
 .input-box label {
-  font-size: 14px;
+  font-size: 16px;
   color: #000000;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input-box input,
@@ -148,6 +149,15 @@ header {
 .select-box {
   position: relative;
   width: 100%;
+}
+
+.select-box label {
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-top: 15px;
+  display: block;
 }
 
 .select-box select {

@@ -199,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!data.country || data.country === "Country") {
       showToast("Please select a valid country.", "error");
+
       return false;
     }
 
