@@ -157,7 +157,8 @@ button:hover {
     display: block;
     width: 100%; /* Buttons full width kariye */
     margin-bottom: 8px; /* Vachche gap add kariye */
-
+  }
+}
 /* Modern Glassmorphic Modal Styles */
 .modalcontainer {
   display: flex;
@@ -420,7 +421,6 @@ button:hover {
   to {
     transform: translateX(0);
     opacity: 1;
-
   }
 }
 
