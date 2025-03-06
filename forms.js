@@ -6,11 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to show toast notification
   const showToast = (message, type = "success") => {
     notification.textContent = message;
-    notification.className = `toast ${type}`;
+    notification.classList.add("toast", type);
     notification.style.display = "block";
 
     setTimeout(() => {
       notification.style.display = "none";
+      notification.classList.remove("toast", type);
     }, 7000);
   };
 
@@ -46,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Check if user is editing an existing entry
-  const editUserIndex = localStorage.getItem("editUserIndex");
-  if (editUserIndex !== null) {
+  const editUserIndex = parseInt(localStorage.getItem("editUserIndex"), 10);
+  if (!isNaN(editUserIndex)) {
     const editUserData = JSON.parse(localStorage.getItem("editUserData"));
     if (editUserData) {
       // Populate form fields with existing user data
@@ -104,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Show appropriate success message using toast
       showToast(
-        editUserIndex !== null
+        !isNaN(editUserIndex) && editUserIndex >= 0
           ? "User updated successfully!"
           : "Registration successful!",
         "success"
@@ -196,8 +197,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
 
-    if (Object.values(data).some((value) => !value)) {
-      showToast("Country is required.", "error");
+    if (!data.country || data.country === "Country") {
+      showToast("Please select a valid country.", "error");
+
       return false;
     }
 
@@ -207,7 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to Save User Data in Local Storage
   function saveUserData(data) {
     let users = JSON.parse(localStorage.getItem("users")) || []; // Get existing users
-    if (editUserIndex !== null) {
+    if (!isNaN(editUserIndex)) {
       users[editUserIndex] = data; // Update existing user
     } else {
       users.push(data); // Add new user

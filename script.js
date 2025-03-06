@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     if (currentPage > 1)
-      pagination.appendChild(createPageButton(currentPage - 1, "<"));
+      pagination.appendChild(createPageButton(currentPage - 1, "< prev"));
     if (currentPage > 2) {
       pagination.appendChild(createPageButton(1));
       if (currentPage > 3)
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pagination.appendChild(createPageButton(pageCount));
     }
     if (currentPage < pageCount)
-      pagination.appendChild(createPageButton(currentPage + 1, ">"));
+      pagination.appendChild(createPageButton(currentPage + 1, "next >"));
   }
 
   // Function to delete a user from the list
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notification.style.display = "block";
     setTimeout(() => {
       notification.style.display = "none";
-    }, 3000);
+    }, 6000);
   }
 
   // Search functionality
