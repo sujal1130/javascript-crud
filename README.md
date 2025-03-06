@@ -1,4 +1,5 @@
-<h1 align="center">👋 Welcome!</h1>
+<h1 align="center">👋 Welcome! To JavaScript CRUD Application</h1>
+💡 A simple CRUD (Create, Read, Update, Delete) application built using JavaScript, HTML, and CSS.
 
 ---
 
@@ -6,7 +7,8 @@
 📌 This is a **registration form** where users can sign up seamlessly.  
 
 ### 🚧 **Current Status:**  
-⚙️ I am actively working on fixing existing bugs and making necessary improvements to enhance functionality. 🔧  
+⚙️ I am actively working on fixing existing bugs and making necessary improvements to enhance functionality.🔧  
+🔧 This time only one bug existing.🔧  
 
 🔹 Stay tuned for upcoming updates!  
 🔹 If you have any suggestions or encounter issues, feel free to contribute.  
