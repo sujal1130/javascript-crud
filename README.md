@@ -95,4 +95,5 @@ cd javascript-crud
      Dynamic and interactive functionality.
 
 ---
-🚀 **Happy Coding!** 🧑‍💻🎉 Keep building amazing things!
+
+🚀 Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries! 🔥💡
