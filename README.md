@@ -24,11 +24,17 @@
 ## ✨Key Features
 
 🚀 Effortlessly add new records dynamically.
+
 ✏️ Edit Modify existing entries with ease.
+
 🗑️ Delete records with a Delete Modul and confirmation Notifications
+
 💾 Persistent data storage using LocalStorage for seamless access.
+
 📱 Fully responsive design for a smooth experience across devices.
+
 💬 Real-time notifications for key actions.
+
 ✔️ Input validation to ensure data accuracy.
 
 ---
@@ -72,7 +78,9 @@ cd javascript-crud
 ## 🏗️ Technologies Used
 
 🖥️ HTML5 – Structured and semantic web content.
+
 🎨 CSS3 – Stylish and responsive UI design.
+
 📜 JavaScript – Dynamic and interactive functionality.
 
 ---
