@@ -13,11 +13,7 @@
 
 ⚙️ Ongoing Enhancements & Bug Fixes 🛠️
 
-🔧 Currently, only one minor bug exists. 🐞 The application is actively being improved for better functionality.
-
-🔹 Exciting updates are on the way! 🚀
-
-🔹 If you have any suggestions or encounter issues, feel free to contribute & collaborate. 💬
+🔧 Currently, only one minor bug exists. 🐞 The application is actively being improved for better functionality. 💬
 
 ---
 
