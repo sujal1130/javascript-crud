@@ -72,23 +72,13 @@ cd javascript-crud
 ---
 
 ## 🏗️ Technologies Used
-- **🖥️ HTML5** 
-  
-    ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-    
-    Structured and semantic web content.
 
-- **🎨 CSS3** 
-  
-     ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-  
-     Stylish and responsive UI design.
+| Technology  | img | Description |
+|-------------|-------------|-------------|
+| **HTML5** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) | Structured and semantic web content. |
+| **CSS3** | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) | Stylish and responsive UI design. |
+| **JavaScript** | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) | Dynamic and interactive functionality. |
 
-- **📝 JavaScript** 
-  
-     ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-    
-     Dynamic and interactive functionality.
 
 ---
 
