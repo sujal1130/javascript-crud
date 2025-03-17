@@ -73,16 +73,21 @@ cd javascript-crud
 
 ## 🏗️ Technologies Used
 
-<table>
+<!-- Table -->
+<table border="1">
   <tr>
     <th>Technology</th>
     <th>Badge</th>
     <th>Description</th>
+    <th>Img</th>
   </tr>
   <tr>
     <td><b>HTML5</b></td>
     <td><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></td>
     <td>Structured and semantic web content.</td>
+    <td rowspan="3">
+      <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star">
+    </td>
   </tr>
   <tr>
     <td><b>CSS3</b></td>
@@ -94,14 +99,8 @@ cd javascript-crud
     <td><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"></td>
     <td>Dynamic and interactive functionality.</td>
   </tr>
-  <tr>
-    <td>
-      <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star" align="right">
-    </td>
-  </tr>
 </table>
 
 ---
 
 🚀 Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries! 🔥💡
-
