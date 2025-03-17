@@ -103,4 +103,4 @@ cd javascript-crud
 
 ---
 
-🚀 Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries! 🔥💡
+<p align="center">🚀 Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries! 🔥💡</p>
