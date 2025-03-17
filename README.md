@@ -74,7 +74,7 @@ cd javascript-crud
 ## 🏗️ Technologies Used
 
 <!-- Table -->
-<table border="1">
+<table border="1" align="center">
   <tr>
     <th>Technology</th>
     <th>Badge</th>
@@ -82,22 +82,22 @@ cd javascript-crud
     <th>Img</th>
   </tr>
   <tr>
-    <td><b>HTML5</b></td>
-    <td><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></td>
-    <td>Structured and semantic web content.</td>
+    <td align="center"><b>HTML5</b></td>
+    <td align="center"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></td>
+    <td align="center">Structured and semantic web content.</td>
     <td rowspan="3">
       <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star">
     </td>
   </tr>
   <tr>
-    <td><b>CSS3</b></td>
-    <td><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></td>
-    <td>Stylish and responsive UI design.</td>
+    <td align="center"><b>CSS3</b></td>
+    <td align="center"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></td>
+    <td align="center">Stylish and responsive UI design.</td>
   </tr>
   <tr>
-    <td><b>JavaScript</b></td>
-    <td><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"></td>
-    <td>Dynamic and interactive functionality.</td>
+    <td align="center"><b>JavaScript</b></td>
+    <td align="center"><img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"></td>
+    <td align="center">Dynamic and interactive functionality.</td>
   </tr>
 </table>
 
