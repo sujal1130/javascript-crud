@@ -19,7 +19,7 @@
 
 ## ✨Key Features
 
-- 🚀 Effortlessly **add new** records **dynamically**.
+- ➕ Effortlessly **add new** records **dynamically**.
 
 - ✏️ **Edit Modify** existing entries with ease.
 
@@ -48,6 +48,10 @@
 - ✏️ Click **'Edit'** to **update** an existing entry.
 
 - 🗑️ Click **'Delete'** to **remove** an entry permanently.
+
+---
+
+## 📸 Screenshots
 
 ---
 
