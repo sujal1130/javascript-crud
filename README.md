@@ -53,17 +53,27 @@
 
 ### 📸 Screenshots
 
+✨ Explore the key sections of the application below! Click on any image for a closer look.
+
 ## 🏠 Home Page
 
-![Home Page](Screenshot1.png)
+🖥️ A clean and professional homepage with intuitive navigation.
+
+<p align="center"> <img src="Screenshot1.png" alt="Home Page" width="600"> </p>
 
 ## ➕ Add New Record
 
-![Add Record](Screenshot2.png)
+📋 Easily add new records with a user-friendly form.
+
+<p align="center"> <img src="Screenshot2.png" alt="Add Record" width="600"> </p>
 
 ## 🗑️ Delete Confirmation Modal
 
-![Delete Record](Screenshot3.png)
+⚠️ A confirmation popup ensuring safe deletions.
+
+<p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
+
+### 🔍 Click on images to view them in full size! and more screenshots visited to Click 
 
 ---
 
