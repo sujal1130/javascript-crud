@@ -55,15 +55,15 @@
 
 ### 🏠 Home Page
 
-![Home Page](screenshots/Screenshot%201.png)
+![Home Page](screenshots/Screenshot1.png)
 
 ### ➕ Add New Record
 
-![Add Record](screenshots/Screenshot%202.png)
+![Add Record](screenshots/Screenshot2.png)
 
 ### 🗑️ Delete Confirmation Modal
 
-![Edit Record](screenshots/Screenshot%203.png)
+![Delete Record](screenshots/Screenshot3.png)
 
 ---
 
