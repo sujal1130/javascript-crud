@@ -55,7 +55,7 @@
 
 ### 🏠 Home Page
 
-![Home Page](screenshots/Screenshot1.png)
+![Home Page](Screenshot1.png)
 
 ### ➕ Add New Record
 
