@@ -51,19 +51,19 @@
 
 ---
 
-## 📸 Screenshots
+### 📸 Screenshots
 
-### 🏠 Home Page
+## 🏠 Home Page
 
 ![Home Page](Screenshot1.png)
 
-### ➕ Add New Record
+## ➕ Add New Record
 
-![Add Record](screenshots/Screenshot2.png)
+![Add Record](Screenshot2.png)
 
-### 🗑️ Delete Confirmation Modal
+## 🗑️ Delete Confirmation Modal
 
-![Delete Record](screenshots/Screenshot3.png)
+![Delete Record](Screenshot3.png)
 
 ---
 
