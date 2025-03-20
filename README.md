@@ -73,7 +73,8 @@
 
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
 
-### 🔍 Click on images to view them in full size! and more screenshots visited to Click 
+### 🔍 Click on images to view them in full size!
+### 📂 More Screenshots: [Click Here](Screenshots) 
 
 ---
 
