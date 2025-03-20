@@ -53,6 +53,17 @@
 
 ## 📸 Screenshots
 
+### 🏠 Home Page  
+![Home Page](screenshots/home-page.png)  
+
+### ➕ Add New Record  
+![Add Record](screenshots/add-record.png)  
+
+### ✏️ Edit Record  
+![Edit Record](screenshots/edit-record.png)  
+
+### 🗑️ Delete Confirmation Modal  
+![Delete Confirmation](screenshots/delete-confirmation.png)  
 
 ---
 
