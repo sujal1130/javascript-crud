@@ -81,18 +81,18 @@ cd javascript-crud
     <th>Description</th>
     <th>Img</th>
   </tr>
-  <tr>
-    <td align="center"><b>HTML5</b></td>
-    <td align="center"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></td>
-    <td align="center">Structured and semantic web content.</td>
+    <tr>
+    <td align="center"><b>CSS3</b></td>
+    <td align="center"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></td>
+    <td align="center">Stylish and responsive UI design.</td>
     <td rowspan="3">
       <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star">
     </td>
   </tr>
   <tr>
-    <td align="center"><b>CSS3</b></td>
-    <td align="center"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"></td>
-    <td align="center">Stylish and responsive UI design.</td>
+    <td align="center"><b>HTML5</b></td>
+    <td align="center"><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"></td>
+    <td align="center">Structured and semantic web content.</td>
   </tr>
   <tr>
     <td align="center"><b>JavaScript</b></td>
