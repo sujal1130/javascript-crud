@@ -21,7 +21,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #888282 url("japan.jpg") no-repeat center center fixed;
+  background: #888282 url("Goku-And-Vegeta.jpg") no-repeat center center fixed;
   background-size: cover;
   filter: blur(3px) brightness(0.4);
   z-index: -1;
@@ -178,7 +178,8 @@ button:hover {
 }
 
 .modal {
-  background: #888282 url("japan.jpg") no-repeat center center / cover fixed;
+  background: #888282 url("Luffy5gear.jpg") no-repeat center center / cover
+    fixed;
   color: #ffffff;
   padding: 30px;
   border-radius: 16px;
