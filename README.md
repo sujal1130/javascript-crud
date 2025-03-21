@@ -78,23 +78,21 @@
 
 ---
 
-## 📦 Installation
+## 📦 Installation & Setup
 
 - To set up the **project** on your **local machine**, follow these **steps:**
 
-1️⃣ **Clone the repository:**
-
 ```bash
+# 1️⃣ Clone the repository:-
 git clone https://github.com/sujal1130/javascript-crud.git
 ```
-
-2️⃣ **Navigate to the project directory:**
-
 ```bash
+# 2️⃣ Navigate to the project directory:-
 cd javascript-crud
 ```
-
-3️⃣ Open **index.html** your preferred browser.
+```bash
+# 3️⃣ Open index.html your preferred browser.
+```
 
 ---
 
