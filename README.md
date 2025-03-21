@@ -74,7 +74,8 @@
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
 
 ### 🔍 Click on images to view them in full size!
-### 📂 More Screenshots: [Click Here](Screenshots) 
+
+### 📂 More Screenshots: [Click Here](Screenshots)
 
 ---
 
@@ -86,10 +87,12 @@
 # 1️⃣ Clone the repository:-
 git clone https://github.com/sujal1130/javascript-crud.git
 ```
+
 ```bash
 # 2️⃣ Navigate to the project directory:-
 cd javascript-crud
 ```
+
 ```bash
 # 3️⃣ Open index.html your preferred browser.
 ```
