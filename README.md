@@ -5,7 +5,7 @@
 
 ## 📝 Registration Form 🖊️
 
-📌 This **intuitive registration form** allows users to sign up effortlessly with a smooth and **user-friendly** experience.
+📌 This **intuitive registration form** allows users to sign up effortlessly with a smooth and **user-friendly** experience.👨‍💻
 
 ---
 
@@ -75,7 +75,7 @@
 
 ### 🔍 Click on images to view them in full size!
 
-### 📂 More Screenshots: [Click Here](Screenshots)
+### 📂 More Screenshots: [Click Here View Gallery](Screenshots)
 
 ---
 
