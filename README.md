@@ -81,7 +81,7 @@
 
 ## 📦 Installation & Setup
 
-- To set up the **project** on your **local machine**, follow these **steps:**
+- 🛠️ To set up the **project** on your **local machine**, follow these **steps:**
 
 ```bash
 # 1️⃣ Clone the repository:-
