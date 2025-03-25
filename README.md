@@ -53,23 +53,23 @@
 
 ### 📸 Screenshots
 
-✨ Explore the key sections of the application below! Click on any image for a closer look.
+✨ Explore the key sections of the application below! **Click on any image for a closer look.**
 
 ## 🏠 Home Page
 
-🖥️ A clean and professional homepage with intuitive navigation.
+🖥️ A clean and professional **homepage** with intuitive navigation.
 
 <p align="center"> <img src="Screenshot1.png" alt="Home Page" width="600"> </p>
 
 ## ➕ Add New Record
 
-📋 Easily add new records with a user-friendly form.
+📋 **Easily add new records** with a user-friendly form.
 
 <p align="center"> <img src="Screenshot2.png" alt="Add Record" width="600"> </p>
 
 ## 🗑️ Delete Confirmation Modal
 
-⚠️ A confirmation popup ensuring safe deletions.
+⚠️ A **confirmation popup** ensuring safe **deletions**.
 
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
 
