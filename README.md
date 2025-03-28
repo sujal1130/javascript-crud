@@ -53,7 +53,7 @@
 
 ### 📸 Screenshots
 
-✨ Explore the key sections of the application below! **Click on any image for a closer look.**
+✨ Explore the key sections of the application below! **Click on any image for a closer look.** ✨
 
 ## 🏠 Home Page
 
