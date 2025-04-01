@@ -119,7 +119,7 @@ cd javascript-crud
     </td>
     <td align="center">Stylish and responsive UI design.</td>
     <td rowspan="3" align="center">
-      <img src="Screenshot2.png" alt="Add Record" width="260" height="135">
+      <img src="Screenshot2.png" alt="Add Record" width="300" height="135">
     </td>
     <td rowspan="3" align="center">
       <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star">
