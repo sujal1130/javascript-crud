@@ -110,6 +110,7 @@ cd javascript-crud
     <th>Badge</th>
     <th>Description</th>
     <th>Img</th>
+    <th>Gif</th>
   </tr>
   <tr>
     <td align="center"><b>CSS3</b></td>
@@ -117,6 +118,9 @@ cd javascript-crud
       <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
     </td>
     <td align="center">Stylish and responsive UI design.</td>
+    <td rowspan="3" align="center">
+      <img src="Screenshot2.png" alt="Add Record" width="260" height="135">
+    </td>
     <td rowspan="3" align="center">
       <img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif" width="150" alt="Support & Star">
     </td>
