@@ -19,7 +19,7 @@
 
 ---
 
-## ✨Key Features :
+## ✨Key Features :-
 
 - ➕ Effortlessly **add new** records **dynamically**.
 
@@ -37,7 +37,7 @@
 
 ---
 
-## 🛠️ How to Use :
+## 🛠️ How to Use :-
 
 - 📂 Open the application in your browser.
 
@@ -53,23 +53,23 @@
 
 ---
 
-### 📸 Screenshots :
+### 📸 Screenshots :-
 
 ✨ Explore the key sections of the application below! **Click on any image for a closer look.** ✨
 
-## 🏠 Home Page :
+## 🏠 Home Page :-
 
 🖥️ A clean and professional **homepage** with intuitive navigation.
 
 <p align="center"> <img src="Screenshot1.png" alt="Home Page" width="600"> </p>
 
-## ➕ Add New Record :
+## ➕ Add New Record :-
 
 📋 **Easily add new records** with a user-friendly form.
 
 <p align="center"> <img src="Screenshot2.png" alt="Add Record" width="600"> </p>
 
-## 🗑️ Delete Confirmation Modal :
+## 🗑️ Delete Confirmation Modal :-
 
 ⚠️ A **confirmation popup** ensuring safe **deletions**.
 
@@ -101,7 +101,7 @@ cd javascript-crud
 
 ---
 
-## 🏗️ Technologies Used :
+## 🏗️ Technologies Used :-
 
 <!-- Table -->
 <table border="1" align="center">
