@@ -58,6 +58,8 @@
 
 ✨ Explore the key sections of the application below! **Click on any image for a closer look.** ✨
 
+### 🔍 Click on images to view them in full size!
+
 ## 🏠 Home Page :-
 
 🖥️ A clean and professional **homepage** with intuitive navigation.
@@ -75,8 +77,6 @@
 ⚠️ A **confirmation popup** ensuring safe **deletions**.
 
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
-
-### 🔍 Click on images to view them in full size!
 
 ### 📂 More Screenshots: [Click Here View Gallery](Screenshots)
 
