@@ -14,9 +14,9 @@
 
 ## 🚧 Current Status:-
 
-⚙️ Ongoing Enhancements & Bug Fixes 🛠️
+⚙️ Ongoing Enhancements & Bug Fixes 🔧
 
-🔧 Currently, only one minor bug exists. 🐞 The application is actively being improved for better functionality. 💬
+🛠️ Currently, only one minor bug exists. 🐞 The application is actively being improved for better functionality. 💬
 
 ---
 
