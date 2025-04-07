@@ -78,7 +78,7 @@
 
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
 
-### 📂 More Screenshots: [Click Here View Gallery](Screenshots) 📂
+### 📂 More Screenshots:- [Click Here View Gallery](Screenshots) 📂
 
 ---
 
