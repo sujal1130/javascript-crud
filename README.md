@@ -58,7 +58,7 @@
 
 ✨ Explore the key sections of the application below! **Click on any image for a closer look.** ✨
 
-### 🔍 Click on images to view them in full size! 🔍
+### 📍 Click on images to view them in full size! 🔍
 
 ## 🏠 Home Page :-
 
