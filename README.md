@@ -12,7 +12,7 @@
 
 ---
 
-## 🚧Project Current Status:-
+## 🚧 Project Current Status:-
 
 ⚙️ Ongoing Enhancements & Bug Fixes 🔧
 
@@ -20,7 +20,7 @@
 
 ---
 
-## ✨Key Features :-
+## ✨ Key Features :-
 
 - ➕ Effortlessly **add new** records **dynamically**.
 
