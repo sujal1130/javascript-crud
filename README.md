@@ -97,7 +97,7 @@ cd javascript-crud
 ```
 
 ```bash
-# 3️⃣ Open index.html your preferred browser.
+# 3️⃣ Open 'index.html' your preferred browser.
 ```
 
 ---
