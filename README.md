@@ -102,7 +102,7 @@ cd javascript-crud
 
 ---
 
-## 🏗️ Technologies Used :-
+## 🏗️ Technologies Built With Used :-
 
 <!-- Table -->
 <table border="1" align="center">
