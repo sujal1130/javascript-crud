@@ -401,6 +401,30 @@ button:hover {
   pointer-events: none; /* Prevents click events */
 }
 
+/* sorting css */
+.sort-icon::before {
+  content: "▲▼"; /* Default neutral icon */
+  margin-left: 5px;
+  color: #fcfcfc;
+  font-size: 0.8em;
+}
+
+th.sorted-asc .sort-icon::before {
+  content: "▲";
+  color: rgb(18, 207, 18);
+}
+
+th.sorted-desc .sort-icon::before {
+  content: "▼";
+  color: rgb(241, 16, 16);
+}
+
+.page-btn:disabled {
+  background-color: #312d2d;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
 /* Slide-in animation */
 @keyframes slideIn {
   from {

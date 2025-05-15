@@ -21,18 +21,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load user data when the page loads
   loadUserData();
 
-  // Update rowsPerPage when the user selects a new value from the dropdown
+  // Redirect to the form page when the "Add User" button is clicked
+  addButton.addEventListener("click", () => {
+    localStorage.removeItem("editUserIndex"); // Clear any stored edit index
+    localStorage.removeItem("editUserData"); // Clear any stored edit user data
+    window.location.href = "form.html"; // Navigate to the form page
+  });
+
   rowsPerPageSelect.addEventListener("change", () => {
     rowsPerPage = parseInt(rowsPerPageSelect.value);
     currentPage = 1; // Reset to the first page
     loadUserData();
   });
 
-  // Redirect to the form page when the "Add User" button is clicked
-  addButton.addEventListener("click", () => {
-    localStorage.removeItem("editUserIndex"); // Clear any stored edit index
-    localStorage.removeItem("editUserData"); // Clear any stored edit user data
-    window.location.href = "form.html"; // Navigate to the form page
+  // Search functionality
+  searchInput.addEventListener("input", () => {
+    const filter = searchInput.value.toLowerCase();
+    const rows = userTable.getElementsByTagName("tr");
+    for (let row of rows) {
+      const cells = row.getElementsByTagName("td");
+      row.style.display = [...cells].some((cell) =>
+        cell.textContent.toLowerCase().includes(filter)
+      )
+        ? ""
+        : "none";
+    }
+  });
+
+  headers.forEach((header) => {
+    header.addEventListener("click", () => {
+      sortUsers(header.dataset.column);
+    });
   });
 
   // Function to load and display user data
@@ -74,78 +93,96 @@ document.addEventListener("DOMContentLoaded", () => {
     attachEventListeners();
   }
 
-  // Attach event listeners to delete buttons
+  // Attach event listeners to delete and edit buttons
   function attachEventListeners() {
-    document.querySelectorAll(".delete-btn").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const index = event.target.getAttribute("data-index");
+    document.querySelectorAll(".edit-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const index = e.target.dataset.index;
+        localStorage.setItem("editUserIndex", index);
+        localStorage.setItem("editUserData", JSON.stringify(users[index]));
+        window.location.href = "form.html";
+      });
+    });
+
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const index = e.target.dataset.index;
         showConfirmDialog("Are you sure you want to delete this user?", () =>
           deleteUser(index)
         );
       });
     });
-
-    // Attach event listeners to edit buttons
-    document.querySelectorAll(".edit-btn").forEach((button) => {
-      button.addEventListener("click", editUser);
-    });
   }
 
   function sortUsers(columnKey) {
-    if (currentSortColumn === columnKey) {
-      sortOrder *= -1; // Reverse sort order if the same column is clicked again
-    } else {
-      sortOrder = 1;
-      currentSortColumn = columnKey;
-    }
+    sortOrder = currentSortColumn === columnKey ? -sortOrder : 1;
+    currentSortColumn = columnKey;
 
     users.sort((a, b) => {
-      let valueA = a[columnKey] ? a[columnKey].toString().toLowerCase() : "";
-      let valueB = b[columnKey] ? b[columnKey].toString().toLowerCase() : "";
+      const valA = a[columnKey]?.toString().toLowerCase() || "";
+      const valB = b[columnKey]?.toString().toLowerCase() || "";
 
-      if (!isNaN(parseFloat(valueA)) && !isNaN(parseFloat(valueB))) {
-        return (parseFloat(valueA) - parseFloat(valueB)) * sortOrder; // Numeric sorting
-      }
-      return valueA.localeCompare(valueB) * sortOrder; // Alphabetical sorting
+      return isNaN(valA) || isNaN(valB)
+        ? valA.localeCompare(valB) * sortOrder
+        : (parseFloat(valA) - parseFloat(valB)) * sortOrder;
     });
 
+    updateSortIcons();
     localStorage.setItem("users", JSON.stringify(users));
     loadUserData();
   }
 
-  headers.forEach((header) => {
-    header.addEventListener("click", () => {
-      const columnKey = header.dataset.column;
-      sortUsers(columnKey);
+  function updateSortIcons() {
+    headers.forEach((header) => {
+      header.classList.remove("sorted-asc", "sorted-desc");
+      if (header.dataset.column === currentSortColumn) {
+        header.classList.add(sortOrder === 1 ? "sorted-asc" : "sorted-desc");
+      }
     });
-  });
+  }
 
   // Setup pagination controls
   function setupPagination(users) {
     pagination.innerHTML = "";
     const pageCount = Math.ceil(users.length / rowsPerPage);
-    if (pageCount <= 1) return; // No pagination needed for one page
 
-    const createPageButton = (page, text = page) => {
+    if (pageCount <= 1) return; // No pagination needed
+
+    const createPageButton = (page, text = page, isDisabled = false) => {
       const btn = document.createElement("button");
       btn.textContent = text;
-      btn.classList.add("page-btn");
-      if (page === currentPage) btn.classList.add("active");
-
-      btn.addEventListener("click", () => {
-        currentPage = page;
-        loadUserData();
-      });
+      btn.className = "page-btn";
+      if (page === currentPage) {
+        btn.classList.add("active");
+        btn.disabled = true;
+      }
+      if (isDisabled) {
+        btn.disabled = true;
+        btn.classList.add("disabled");
+      }
+      btn.onclick = () => {
+        if (!btn.disabled) {
+          currentPage = page;
+          loadUserData();
+        }
+      };
       return btn;
     };
 
-    if (currentPage > 1)
-      pagination.appendChild(createPageButton(currentPage - 1, "< prev"));
+    // < prev
+    pagination.appendChild(
+      createPageButton(currentPage - 1, "< prev", currentPage === 1)
+    );
+
+    // First page + ellipsis
     if (currentPage > 2) {
       pagination.appendChild(createPageButton(1));
-      if (currentPage > 3)
+      if (currentPage > 3) {
         pagination.appendChild(document.createTextNode(" ... "));
+      }
     }
+
+    // Middle page numbers
     for (
       let i = Math.max(1, currentPage - 1);
       i <= Math.min(pageCount, currentPage + 1);
@@ -153,13 +190,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       pagination.appendChild(createPageButton(i));
     }
+
+    // Last page + ellipsis
     if (currentPage < pageCount - 1) {
-      if (currentPage < pageCount - 2)
+      if (currentPage < pageCount - 2) {
         pagination.appendChild(document.createTextNode(" ... "));
+      }
       pagination.appendChild(createPageButton(pageCount));
     }
-    if (currentPage < pageCount)
-      pagination.appendChild(createPageButton(currentPage + 1, "next >"));
+
+    // next >
+    pagination.appendChild(
+      createPageButton(currentPage + 1, "next >", currentPage === pageCount)
+    );
   }
 
   // Function to delete a user from the list
@@ -170,26 +213,21 @@ document.addEventListener("DOMContentLoaded", () => {
     showNotification("User deleted successfully!", "error");
   }
 
-  // Function to edit a user
-  function editUser(event) {
-    const index = event.target.getAttribute("data-index"); // Get the index of the user to be edited
-    localStorage.setItem("editUserIndex", index); // Store the user data and index in local storage for editing
-    localStorage.setItem("editUserData", JSON.stringify(users[index]));
-    window.location.href = "form.html"; // Navigate to the form page for editing
-  }
-
   // Show confirmation dialog for delete action
   function showConfirmDialog(message, callback) {
     confirmMessage.textContent = message;
     modalContainer.classList.add("show");
+
     confirmYes.onclick = () => {
       callback();
       closeModal();
     };
+
     confirmNo.onclick = closeModal;
+
     // Close modal when clicking outside
-    modalContainer.addEventListener("click", (event) => {
-      if (event.target === modalContainer) closeModal();
+    modalContainer.addEventListener("click", (e) => {
+      if (e.target === modalContainer) closeModal();
     });
   }
 
@@ -208,18 +246,4 @@ document.addEventListener("DOMContentLoaded", () => {
       notification.style.display = "none";
     }, 6000);
   }
-
-  // Search functionality
-  searchInput.addEventListener("input", () => {
-    const filter = searchInput.value.toLowerCase();
-    const rows = userTable.getElementsByTagName("tr");
-    for (let row of rows) {
-      const cells = row.getElementsByTagName("td");
-      row.style.display = [...cells].some((cell) =>
-        cell.textContent.toLowerCase().includes(filter)
-      )
-        ? ""
-        : "none";
-    }
-  });
 });
