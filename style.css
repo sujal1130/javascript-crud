@@ -419,6 +419,12 @@ th.sorted-desc .sort-icon::before {
   color: rgb(241, 16, 16);
 }
 
+.page-btn:disabled {
+  background-color: #312d2d;
+  color: #ffffff;
+  cursor: not-allowed;
+}
+
 /* Slide-in animation */
 @keyframes slideIn {
   from {
