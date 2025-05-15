@@ -146,27 +146,43 @@ document.addEventListener("DOMContentLoaded", () => {
     pagination.innerHTML = "";
     const pageCount = Math.ceil(users.length / rowsPerPage);
 
-    if (pageCount <= 1) return; // No pagination needed for one page
+    if (pageCount <= 1) return; // No pagination needed
 
-    const createPageButton = (page, text = page) => {
+    const createPageButton = (page, text = page, isDisabled = false) => {
       const btn = document.createElement("button");
       btn.textContent = text;
-      btn.className = "page-btn" + (page === currentPage ? " active" : "");
+      btn.className = "page-btn";
+      if (page === currentPage) {
+        btn.classList.add("active");
+        btn.disabled = true;
+      }
+      if (isDisabled) {
+        btn.disabled = true;
+        btn.classList.add("disabled");
+      }
       btn.onclick = () => {
-        currentPage = page;
-        loadUserData();
+        if (!btn.disabled) {
+          currentPage = page;
+          loadUserData();
+        }
       };
       return btn;
     };
 
-    if (currentPage > 1)
-      pagination.appendChild(createPageButton(currentPage - 1, "< prev"));
+    // < prev
+    pagination.appendChild(
+      createPageButton(currentPage - 1, "< prev", currentPage === 1)
+    );
+
+    // First page + ellipsis
     if (currentPage > 2) {
       pagination.appendChild(createPageButton(1));
-      if (currentPage > 3)
+      if (currentPage > 3) {
         pagination.appendChild(document.createTextNode(" ... "));
+      }
     }
 
+    // Middle page numbers
     for (
       let i = Math.max(1, currentPage - 1);
       i <= Math.min(pageCount, currentPage + 1);
@@ -175,14 +191,18 @@ document.addEventListener("DOMContentLoaded", () => {
       pagination.appendChild(createPageButton(i));
     }
 
+    // Last page + ellipsis
     if (currentPage < pageCount - 1) {
-      if (currentPage < pageCount - 2)
+      if (currentPage < pageCount - 2) {
         pagination.appendChild(document.createTextNode(" ... "));
+      }
       pagination.appendChild(createPageButton(pageCount));
     }
 
-    if (currentPage < pageCount)
-      pagination.appendChild(createPageButton(currentPage + 1, "next >"));
+    // next >
+    pagination.appendChild(
+      createPageButton(currentPage + 1, "next >", currentPage === pageCount)
+    );
   }
 
   // Function to delete a user from the list
