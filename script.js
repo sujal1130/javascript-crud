@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPage = 1;
   let rowsPerPage = 5;
   let users = JSON.parse(localStorage.getItem("users")) || [];
+  let filteredUsers = [...users]; // New filtered list
   let sortOrder = 1; // 1 for ascending, -1 for descending
   let currentSortColumn = null;
 
@@ -36,16 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Search functionality
   searchInput.addEventListener("input", () => {
-    const filter = searchInput.value.toLowerCase();
-    const rows = userTable.getElementsByTagName("tr");
-    for (let row of rows) {
-      const cells = row.getElementsByTagName("td");
-      row.style.display = [...cells].some((cell) =>
-        cell.textContent.toLowerCase().includes(filter)
-      )
-        ? ""
-        : "none";
-    }
+    const filter = searchInput.value.trim().toLowerCase();
+
+    filteredUsers = users.filter((user) => {
+      const combinedText = Object.values(user)
+        .map((val) => (val || "").toString().toLowerCase())
+        .join(" ");
+      return combinedText.includes(filter);
+    });
+
+    currentPage = 1;
+    loadUserData();
   });
 
   headers.forEach((header) => {
@@ -55,18 +57,27 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Function to load and display user data
-  function loadUserData() {
-    users = JSON.parse(localStorage.getItem("users")) || [];
-    displayUsers(users, currentPage);
-    setupPagination(users);
+  function loadUserData(data = filteredUsers) {
+    displayUsers(data, currentPage);
+    setupPagination(data);
   }
 
   // Display paginated user data in the table
-  function displayUsers(users, page) {
+  function displayUsers(data, page) {
     userTable.innerHTML = ""; // Clear table
+    const noResultsMessage = document.getElementById("noResultsMessage");
+
+    if (data.length === 0) {
+      noResultsMessage.style.display = "block";
+      pagination.innerHTML = "";
+      return;
+    } else {
+      noResultsMessage.style.display = "none";
+    }
+
     const start = (page - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const paginatedUsers = users.slice(start, end);
+    const paginatedUsers = data.slice(start, end);
 
     paginatedUsers.forEach((user, index) => {
       const row = document.createElement("tr"); // Create a new row for each user
@@ -81,10 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${user.address || ""}</td>
         <td>${user.country || ""}</td>
         <td>
-          <button class="edit-btn" data-index="${start + index}">Edit</button>
-          <button class="delete-btn" data-index="${
-            start + index
-          }">Delete</button>
+        <button class="edit-btn" data-index="${start + index}">Edit</button>
+        <button class="delete-btn" data-index="${start + index}">Delete</button>
         </td>
       `;
       userTable.appendChild(row); // Append the row to the table
@@ -98,8 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".edit-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const index = e.target.dataset.index;
-        localStorage.setItem("editUserIndex", index);
-        localStorage.setItem("editUserData", JSON.stringify(users[index]));
+        const user = filteredUsers[index];
+        const actualIndex = users.indexOf(user);
+        localStorage.setItem("editUserIndex", actualIndex);
+        localStorage.setItem("editUserData", JSON.stringify(user));
         window.location.href = "form.html";
       });
     });
@@ -107,18 +118,37 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".delete-btn").forEach((btn) => {
       btn.addEventListener("click", (e) => {
         const index = e.target.dataset.index;
-        showConfirmDialog("Are you sure you want to delete this user?", () =>
-          deleteUser(index)
-        );
+        showConfirmDialog("Are you sure you want to delete this user?", () => {
+          deleteUser(index);
+        });
       });
     });
+  }
+
+  // Function to delete a user from the list
+  function deleteUser(index) {
+    const user = filteredUsers[index];
+    const actualIndex = users.indexOf(user);
+    users.splice(actualIndex, 1);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    const filter = searchInput.value.trim().toLowerCase();
+    filteredUsers = users.filter((user) => {
+      const combinedText = Object.values(user)
+        .map((val) => (val || "").toString().toLowerCase())
+        .join(" ");
+      return combinedText.includes(filter);
+    });
+
+    loadUserData();
+    showNotification("User deleted successfully!", "error");
   }
 
   function sortUsers(columnKey) {
     sortOrder = currentSortColumn === columnKey ? -sortOrder : 1;
     currentSortColumn = columnKey;
 
-    users.sort((a, b) => {
+    filteredUsers.sort((a, b) => {
       const valA = a[columnKey]?.toString().toLowerCase() || "";
       const valB = b[columnKey]?.toString().toLowerCase() || "";
 
@@ -128,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     updateSortIcons();
-    localStorage.setItem("users", JSON.stringify(users));
     loadUserData();
   }
 
@@ -142,9 +171,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Setup pagination controls
-  function setupPagination(users) {
+  function setupPagination(data) {
     pagination.innerHTML = "";
-    const pageCount = Math.ceil(users.length / rowsPerPage);
+    const pageCount = Math.ceil(data.length / rowsPerPage);
 
     if (pageCount <= 1) return; // No pagination needed
 
@@ -203,14 +232,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pagination.appendChild(
       createPageButton(currentPage + 1, "next >", currentPage === pageCount)
     );
-  }
-
-  // Function to delete a user from the list
-  function deleteUser(index) {
-    users.splice(index, 1);
-    localStorage.setItem("users", JSON.stringify(users));
-    loadUserData();
-    showNotification("User deleted successfully!", "error");
   }
 
   // Show confirmation dialog for delete action
