@@ -142,9 +142,9 @@ cd javascript-crud
   </tr>
 </table>
 <!-- Footer Message -->
-<p align="center">
-  🚀 <strong>Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries!</strong> 🔥💡
-</p>
+
+ > 🚀 **Happy Coding! 👨‍💻✨ Keep building awesome projects and pushing boundaries!** 🔥💡
+
 
 ---
 
