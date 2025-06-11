@@ -1,6 +1,6 @@
 <h1 align="center">👋 Welcome ! To JavaScript CRUD Application !</h1>
 
-✨💻📚 This project is specifically designed for learning the fundamental concepts of <strong>JavaScript, HTML, and CSS</strong> operations. 📚💻✨
+> ✨💻📚 This project is specifically designed for learning the fundamental concepts of <strong>JavaScript, HTML, and CSS</strong> operations. 📚💻✨
 
 ---
 
