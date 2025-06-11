@@ -62,7 +62,7 @@
 
 ## 🏠 Home Page :-
 
-🖥️ A clean and professional **homepage** with intuitive navigation. 🖥️
+> 🖥️ A clean and professional **homepage** with intuitive navigation. 🖥️
 
 <p align="center"> <img src="Screenshot1.png" alt="Home Page" width="600"> </p>
 
