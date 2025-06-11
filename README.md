@@ -68,7 +68,7 @@
 
 ## ➕ Add New Record :-
 
-📋 **Easily add new records** with a user-friendly form. 📋
+> 📋 **Easily add new records** with a user-friendly form. 📋
 
 <p align="center"> <img src="Screenshot2.png" alt="Add Record" width="600"> </p>
 
