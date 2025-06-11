@@ -6,7 +6,7 @@
 
 ## 📝 Registration Form 🖊️
 
-📌 This **intuitive registration form** allows users to sign up effortlessly with a smooth and **user-friendly** experience.👨‍💻
+> 📌 This **intuitive registration form** allows users to sign up effortlessly with a smooth and **user-friendly** experience.👨‍💻
 
 💡 A simple and efficient <strong>CRUD (Create, Read, Update, Delete) application</strong> built using <strong>JavaScript, HTML, and CSS</strong> to streamline data management with ease. 💡
 
