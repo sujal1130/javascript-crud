@@ -74,7 +74,7 @@
 
 ## 🗑️ Delete Confirmation Modal :-
 
-⚠️ A **confirmation popup** ensuring safe **deletions**. ⚠️
+> ⚠️ A **confirmation popup** ensuring safe **deletions**. ⚠️
 
 <p align="center"> <img src="Screenshot3.png" alt="Delete Record" width="600"> </p>
 
