@@ -12,7 +12,7 @@
 
 ---
 
-## 🚧 Project Current Status:-
+## 🚧 Project Current Status :-
 
 ⚙️ Ongoing Enhancements & Bug Fixes 🔧
 
